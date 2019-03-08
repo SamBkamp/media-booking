@@ -1,8 +1,8 @@
 <?php 
-error_reporting(0);
-ini_set('display_errors', 0);
+#error_reporting(0);
+#ini_set('display_errors', 0);
 $teacher = False;
-$mysqli = new mysqli("localhost", "userbase", "", "");
+$mysqli = new mysqli("localhost", "root", "", "userbase");
 $fiesta = "";
 	// if (isset($_COOKIE["user"]) || isset($_COOKIE["secret"])) {
 	// 	$usernameQuery = "SELECT special FROM userData WHERE username ='" . $_COOKIE["user"] . "'";
@@ -21,11 +21,15 @@ if(isset($_POST["username"])){
 		$teacher = True;
 		$fiesta = $_POST["username"];
 	}
+
 	$username = $_POST["username"];
 	$GLOBALS["message"] = "";
-	$approval = "SELECT username FROM userData WHERE username ='" . $username . "'";
-	// $approvalQuery = $mysqli->query($approval);
-	// $ok = implode($approvalQuery->fetch_assoc());
+
+	$check = "SELECT username FROM userData WHERE username ='" . $username . "'";
+	$checkQuery = $mysqli->query($check) or die($mysqli->error);
+	if (!empty($checkQuery)){
+		header("Location: /dashboard/index.php");
+	}
 	
 	
 	
