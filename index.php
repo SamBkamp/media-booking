@@ -18,14 +18,20 @@ if ($mysqli->connect_error) {
 	echo("This is an error, please report it via email to samuel@bonnekamp.net");
 } 
 if(isset($_POST["username"])){
-	if ($_POST["username"] == "teacher"){
+	if ($_POST["username"] == "18bonnekampsb2"){
 		$teacher = True;
 		$fiesta = $_POST["username"];
 		if (isset($_POST["password"])){
-			$passCheck = "SELECT password FROM userData WHERE username = '" . $_POST["password"] . "'";
+			$passCheck = "SELECT password FROM userData WHERE username = '" . $_POST["username"] . "'";
 			$passCheckQuery = $mysqli->query($passCheck) or die($mysqli->error);
-			$passRow = $passCheckQuery->fetch_assoc();
-			if ($passRow == implode($_POST["password"])){
+			$passRow = implode($passCheckQuery->fetch_assoc());
+			if ($passRow == $_POST["password"]){
+				$idSel = "SELECT id FROM userData WHERE username = '" . $_POST["username"] . "'";
+				$idSelQuery = $mysqli->query($idSel) or die($mysqli->error);
+				$idRow = implode($idSelQuery->fetch_assoc());
+				$check = md5($idRow . $_POST["username"]);
+				setcookie("ident", $_POST["username"], time() + (86400 * 30), "/");
+				setcookie("secure", $check, time() + (86400 * 30), "/");
 				header("Location: /dashboard/index.php");
 			}
 		}
@@ -37,51 +43,10 @@ if(isset($_POST["username"])){
 		$checkQuery = $mysqli->query($check) or die($mysqli->error);
 		if (!empty($checkQuery)){
 			header("Location: /dashboard/index.php");
+			setcookie("ident", $_POST["username"], time() + (86400 * 30), "/");
 		}
 	}
 	
-	
-	// $username = $_POST["username"];
-	// $password = $_POST["password"];
-		
-	// $saltQuery = "SELECT salt FROM userData WHERE username ='" . $username . "'";
-	// $saltResult = $mysqli->query($saltQuery);
-	// $saltRow = implode($saltResult->fetch_assoc());
-		
-	// $hashedPassword = hash('sha256', $password . $saltRow);
-	// $passQuery = "SELECT password FROM userData WHERE username ='" . $username . "'";
-	// $passResult = $mysqli->query($passQuery);
-	// $passRow = implode($passResult->fetch_assoc());
-		
-	// if ($hashedPassword === $passRow){
-	// 	if($ok == "yes"){
-	// 		$emailSearch = "SELECT email FROM userdata WHERE username = '" . $username . "'";
-	// 		$emailQuery = $mysqli->query($emailSearch);
-	// 		$emailResult = implode($emailQuery->fetch_assoc());
-	// 		$special = sha1($emailResult . $saltRow);
-	// 		$insertion = "UPDATE userdata SET special = '$special' WHERE username = '$username'";
-			
-	// 		if ($mysqli->query($insertion) === TRUE) {
-	// 			setcookie("user", $username, time() + (86400 * 30), "/");
-	// 			setcookie("secret", $special, time() + (86400 * 30), "/");
-	// 			header("Location:/dashboard/index.php");
-	// 		}
-	// 		 else {
-	// 			$GLOBALS["message"] = "something happened on our end. 0x7370656369616c736574";
-	// 		}
-	// 	}
-	// 	elseif($ok == "no"){
-	// 		$GLOBALS['message'] = "you have not yet been accepted by an admin";
-	// 	} elseif($ok == "stop"){
-	// 		$GLOBALS['message'] = "You have been declined by an admin";
-	// 	}else{
-	// 		$GLOBALS['message'] = "there was something wrong on our end: 0x617070726f76650d0a";
-	// 	}
-			
-	// } else {
-	// 	$GLOBALS["message"] = "Incorrect Username and Password combination";
-	// }
-		
 	
 }
 
