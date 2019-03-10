@@ -14,23 +14,31 @@ $fiesta = "";
 	// 		}
 	// }
 if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+	die("Connection failed: 0x636f6e6572726f72 " . $mysqli->connect_error);
+	echo("This is an error, please report it via email to samuel@bonnekamp.net");
 } 
 if(isset($_POST["username"])){
 	if ($_POST["username"] == "teacher"){
 		$teacher = True;
 		$fiesta = $_POST["username"];
-	}
+		if (isset($_POST["password"])){
+			$passCheck = "SELECT password FROM userData WHERE username = '" . $_POST["password"] . "'";
+			$passCheckQuery = $mysqli->query($passCheck) or die($mysqli->error);
+			$passRow = $passCheckQuery->fetch_assoc();
+			if ($passRow == implode($_POST["password"])){
+				header("Location: /dashboard/index.php");
+			}
+		}
+	}else {
+		$username = $_POST["username"];
+		$GLOBALS["message"] = "";
 
-	$username = $_POST["username"];
-	$GLOBALS["message"] = "";
-
-	$check = "SELECT username FROM userData WHERE username ='" . $username . "'";
-	$checkQuery = $mysqli->query($check) or die($mysqli->error);
-	if (!empty($checkQuery)){
-		header("Location: /dashboard/index.php");
+		$check = "SELECT username FROM userData WHERE username ='" . $username . "'";
+		$checkQuery = $mysqli->query($check) or die($mysqli->error);
+		if (!empty($checkQuery)){
+			header("Location: /dashboard/index.php");
+		}
 	}
-	
 	
 	
 	// $username = $_POST["username"];
