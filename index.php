@@ -5,6 +5,7 @@ $teacher = False;
 $mysqli = new mysqli("localhost", "root", "", "userbase");
 $fiesta = "";
 $message = "";
+$amp = "";
 #just a bunch of stuff to initialise the system
 
 if (isset($_COOKIE["ident"])) {
