@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+html {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: Lato;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#content {
+    min-height: 100%;
+    padding: 0px;
+}
+
+#navWrapper {
+    height: 100%;
+    width: 10%;
+    min-width: 100px;
+    max-width: 130px;
+    background-color: #d9d9d9;
+    background-attachment: fixed;
+    z-index: 2;
+    position: absolute;
+    box-shadow: 0px 5px 15px 1px grey;
+}
+#logo {
+    width: 100%;
+    height: 20px;
+    bckground-color: red;
+    z-index: 200;
+}
+
+#topNav {
+    width: 100%;
+    height: 15%;
+
+    float: right;
+/*     background-color: red; */
+}
+#table {
+    float: right;
+    width: 90.3vw;
+    border-collapse: collapse;
+}
+.fileName {
+    width: 70%;
+    text-align: left;
+    border-bottom: 2px solid #e6e6e6;
+    padding-left: 5px;
+}
+.owner {
+    width: 18%;
+    text-align: left;
+    border-bottom: 2px solid #e6e6e6;
+    padding-left: 20px;
+        margin-bottom: 40px; 
+}
+.files {
+    height: 45px;
+    padding-left: 2%;
+}
+.hover {
+    width: 100%;
+}
+.hover:hover{
+        background-color: #e6e6e6;
+}
+strong {
+    display: inline-block;
+}
+#welcome {
+    display: inline-block;
+    margin-right: 3px;
+}
+#welcomeMessage {
+    position: relative;
+    left: 13vw;
+    top: 4vh; 
+}
+.welcome {
+    font-size: 20px;
+}
+.header {
+  padding-bottom: 4px;
+  font-size: 15px;
+  width: 10%;
+  padding-left: 2%;
+}
+.logoPlaceHolder {
+        width: 70%;
+        margin: 10% auto;
+        display: block;
+}
+.downer {
+    width: 30px;
+    margin-top: 5px;
+    float: left;
+}
+.image {
+    width: 12%;
+    text-align: left;
+border-bottom: 2px solid #e6e6e6;
+padding-left: 20px;
+}
+#addFile {
+    width: 50%;
+    margin: 40px auto;
+    display: block;
+}
+#addFile:hover {
+    cursor: pointer;
+    content: url("/media/addfileshover.png");
+}
+.fileType {
+    height: 30px;
+    margin-left: 10px;
+}
+.doctype {
+    border-bottom: 2px solid #e6e6e6;
+    margin-left: 10px;
+}
+.iconChange {
+    content: url("/media/download.png");
+}
+#blur {
+    height: 100vh;
+    width: 100vw;
+    background-image:url("/media/filter.png");
+    position: absolute;
+    z-index: 200;
+    display: none;
+}
+#uploadFileDisplay {
+    width: 30%;
+    height: 30vh;
+    min-width: 400px;
+    background-color: #d9d9d9;
+    position: absolute;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    z-index: 300;
+    margin: 0 auto;
+}
+#errorMsg {
+    color: #d9d9d9;
+    position: relative;
+    top: 5px;
+}
+#topBorder {
+    width: 100%;
+    height: 15%;
+    z-index: 400;
+    background-color: #0f75bc;
+    margin-top: -16px;
+    text-align: center;
+}
+.uploadButton {
+    left: 40px;
+    font-family: Lato;
+    background-color: #0f75bc;
+    margin-top: 15%;
+    color: #d9d9d9;
+    border: 0px;
+    width: 15%;
+    height: 40px;
+    border-radius: 20%;
+}
+.folder {
+
+    margin-top: -50%;
+}
+.red{
+    color: red;
+}
+.green {
+    color: green;
+}
