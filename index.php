@@ -1,6 +1,6 @@
 <?php 
-#error_reporting(0);
-#ini_set('display_errors', 0);
+error_reporting(0);
+ini_set('display_errors', 0);
 $teacher = False;
 $mysqli = new mysqli("localhost", "root", "", "userbase");
 $fiesta = "";
@@ -30,7 +30,7 @@ if ($mysqli->connect_error) {
 #make sure the mysql server is still alive
 
 if(isset($_POST["username"])){
-	if ($_POST["username"] == "18bonnekampsb2"){ #hard coded the admin accounts (dont sue me). just put in aniother select and youll be good. 
+	if ($_POST["username"] == "18bonnekampsb2"){ #hard coded the admin accounts (dont sue me). just put in another select and youll be good. 
 		$teacher = True;
 		$fiesta = $_POST["username"]; #adds the second input field (check the actual html im too lazy to quote)
 
@@ -59,14 +59,16 @@ if(isset($_POST["username"])){
 		$check = "SELECT username FROM userData WHERE username ='" . $username . "'";
 		$checkQuery = $mysqli->query($check) or die($mysqli->error);
 		$checkRow = implode($checkQuery->fetch_assoc());
+		
 
-		if ($username == $checkRow){ #checks if the inputted username actually exists, and if so, headers them to dash
-			header("Location: /dashboard/index.php");
-			setcookie("ident", $_POST["username"], time() + (86400 * 30), "/"); #sets cookie based solely on username (dont need cookie security when its just a username)
-		}else {
-			$GLOBALS["message"] = "User doesn't exist";
-		}
-	}
+			if ($username == $checkRow){ #checks if the inputted username actually exists, and if so, headers them to dash
+				header("Location: /dashboard/index.php");
+				setcookie("ident", $_POST["username"], time() + (86400 * 30), "/"); #sets cookie based solely on username (dont need cookie security when its just a username)
+			}else {
+				$GLOBALS["message"] = "User doesn't exist";
+			}
+			
+	}	
 	#this section is for the plebians without admin accounts
 	
 }
