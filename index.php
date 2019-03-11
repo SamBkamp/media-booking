@@ -25,8 +25,10 @@ if (isset($_COOKIE["ident"])) {
 #cookie checking script
 
 if ($mysqli->connect_error) {
-	die("Connection failed: 0x636f6e6572726f72 " . $mysqli->connect_error);
-	echo("This is an error, please report it via email to samuel@bonnekamp.net");
+	echo("Connection failed: 0x636f6e6572726f72 (" . $mysqli->connect_error . ")");
+	echo("<br>");
+	echo("<br>");
+	die("This is an error, please report it via email to samuel@bonnekamp.net");
 } 
 #make sure the mysql server is still alive
 
