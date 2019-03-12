@@ -15,6 +15,7 @@ if (isset($_COOKIE["ident"])) {
 		$glassesQuery = $mysqli->query($glasses) or die($mysqli->error);
 		$glassRow = implode($glassesQuery->fetch_assoc());
 		$check = md5($glassRow . $_COOKIE["ident"]); #hashes it to re create how the original cookie was written (secure cookie hash was created with id + user)
+		
 		if ($check == $_COOKIE["secure"]){
 			header("Location: /dashboard/index.php"); #here if it matches the cookie
 		}
