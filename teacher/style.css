@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+html {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: Lato;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#content {
+    min-height: 100%;
+    padding: 0px;
+}
+
+#navWrapper {
+    height: 100%;
+    width: 7%;
+    /* min-width: 100px;
+    max-width: 130px; */
+    background-color: #d9d9d9;
+    background-attachment: fixed;
+    z-index: 2;
+    position: absolute;
+    box-shadow: 0px 5px 15px 1px grey;
+}
+#logo {
+    width: 100%;
+    height: 20px;
+    background-color: red;
+    z-index: 200;
+}
+
+#topNav {
+    width: 100%;
+    height: 15%;
+
+    float: right;
+/*     background-color: red; */
+}
+#table {
+    float: right;
+    width: 100%;
+    border-collapse: collapse;
+}
+.fileName {
+    width: 40%;
+    text-align: left;
+    border-bottom: 2px solid #e6e6e6;
+    padding-left: 5px;
+}
+.lastUser {
+    width: 29%;
+    text-align: left;
+    border-bottom: 2px solid #e6e6e6;
+    padding-left: 5px;
+}
+.owner {
+    width: 18%;
+    text-align: left;
+    border-bottom: 2px solid #e6e6e6;
+    padding-left: 20px;
+    margin-bottom: 40px; 
+}
+.files {
+    height: 45px;
+    padding-left: 10%;
+}
+.hover {
+    width: 100vw;
+}
+.hover:hover{
+        background-color: #e6e6e6;
+}
+strong {
+    display: inline-block;
+}
+#welcome {
+    display: inline-block;
+    margin-right: 3px; 
+}
+#welcomeMessage {
+    position: relative;
+    left: 13vw;
+    top: 4vh;
+    width: 100%;
+    height: 30%;
+    background-attachment: fixed;
+}
+.welcome {
+    font-size: 20px;
+}
+.header {
+  padding-bottom: 4px;
+  font-size: 15px;
+  width: 10%;
+  padding-left: 10%;
+
+}
+.logoPlaceHolder {
+        width: 70%;
+        margin: 10% auto;
+        display: block;
+}
+.downer {
+    width: 30px;
+    margin-top: 5px;
+    float: left;
+}
+.image {
+    width: 12%;
+    text-align: left;
+border-bottom: 2px solid #e6e6e6;
+padding-left: 20px;
+}
+#addFile {
+    width: 50%;
+    margin: 40px auto;
+    display: block;
+}
+#addFile:hover {
+    cursor: pointer;
+    content: url("/media/addfileshover.png");
+}
+.fileType {
+    height: 4vh;
+    margin-left: 0vw;
+    width: 30%;
+}
+button{
+    color:#fff;
+    text-align: center;
+    padding: 20px;
+  }
+  .button-two {
+    border-radius: 4px;
+    background-color:#4285f4;
+    border: none;
+    padding: 4%;
+    width: 130%;
+    transition: all 0.5s;
+    text-align: center;
+    cursor: pointer;
+    font-size:90%;
+    margin: 0 0 0 100%;
+  }
+  
+.button-two span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+.doctype {
+    border-bottom: 2px solid #e6e6e6;
+    margin-left: 10px;
+    padding-top: 2vh;
+}
+.iconChange {
+    content: url("/media/download.png");
+}
+#blur {
+    height: 100vh;
+    width: 100vw;
+    background-image:url("/media/filter.png");
+    position: absolute;
+    z-index: 200;
+    display: none;
+}
+#uploadFileDisplay {
+    width: 30%;
+    height: 30vh;
+    min-width: 400px;
+    background-color: #d9d9d9;
+    position: absolute;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+    z-index: 300;
+    margin: 0 auto;
+}
+#errorMsg {
+    color: #d9d9d9;
+    position: relative;
+    top: 5px;
+}
+#topBorder {
+    width: 100%;
+    height: 15%;
+    z-index: 400;
+    background-color: #0f75bc;
+    margin-top: -16px;
+    text-align: center;
+}
+.uploadButton {
+    left: 40px;
+    font-family: Lato;
+    background-color: #0f75bc;
+    margin-top: 15%;
+    color: #d9d9d9;
+    border: 0px;
+    width: 15%;
+    height: 40px;
+    border-radius: 20%;
+}
+.folder {
+
+    margin-top: -50%;
+}
+.red{
+    color: red;
+}
+.green {
+    color: green;
+}
+.hidden {
+    visibility: visible;
+}
+.booknow{
+    text-align: center;
+    /* margin-top: 10%; */
+}
+.booked{
+    background-color: red;
+}
+#shoppingBasket{
+    height: 4vh;
+    width: 4vw;
+    /* background-color: #bfbfbf;
+    border-radius: 10%; */
+    transition: 0.5s;
+    display: inline-block;
+}
+#userBar{
+    margin-left: 60vw;
+    width: 20vw;
+    height: 4.5vh;
+    margin-top: -10vh;
+}
+#basketico {
+    height: 150%;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#return {
+    height: 100%;
+    width: 20%;
+    background-color: #4285f4;
+    display: inline-block;
+    margin-left: 2%;
+    border-radius: 10%;
+}
+#returnico {
+    height: 110%;
+    cursor: pointer;
+}
+#grey{
+    position: absolute;
+    background-color: rgba(125,125,125, 0.5);
+    width: 100vw;
+    height: 100vh;
+    z-index: 22222222222;
+    visibility: hidden;
+}
+#container {
+    position: absolute;
+    width: 60vw;
+    height: 80vh;
+    border-radius: 10%;
+    background-color: white;
+    margin-left: 20vw;
+    margin-top: 10vh;
+}
+#qrcode {
+    margin: 13% auto;
+    display: block;
+}
+#copyPaste{
+    display:block;
+    margin: 0 auto;
+
+}
+#title {
+    text-align: center;
+    font-size: 140%;
+    margin-top: 5%;
+}
