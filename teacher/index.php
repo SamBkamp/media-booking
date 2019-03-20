@@ -21,6 +21,8 @@
                         }else {
                             header("Location: ../");
                         }
+                    }else {
+                        header("Location: ../dashboard");
                     }
 
                 }else {
@@ -42,9 +44,8 @@
     
 
     <div id="container">
-    <h3 id="title">Have a teacher scan this code to return your equipment</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost/dashboard/return.php?r=<?php echo($_COOKIE["ident"]) ?>" id="qrcode"/>
-    <input disabled="disabled" value="http://localhost/dashboard/return.php?r=<?php echo($_COOKIE["ident"]) ?>" id="copyPaste">
+    <h3 id="title">Manually return a student</h3>
+    
     </div>
 </div>
         <!-- =START OF NAV= -->
@@ -91,7 +92,7 @@
                 <td class='files fileName'> " . $row["name"] . "</td>
                 <td class='files lastUser'> " . $row["last"] . "</td>
                 <td class='owner files name " . $color . "' >" . $in  ."</td>
-                <td class='doctype'><div class='fileType' onClick='booking(\"" . md5($_COOKIE["secret"]) . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>" . $chose ."</span></button></div></td>
+                <td class='doctype'><div class='fileType' onClick='booking(\"" . md5($_COOKIE["secure"]) . "\", \"" . $row["id"] . "\", \"" . $_COOKIE["ident"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>" . $chose ."</span></button></div></td>
                 </tr>");
             }    
 

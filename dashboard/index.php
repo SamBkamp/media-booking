@@ -17,7 +17,7 @@
                         $usernameRow = implode($usernameResult->fetch_assoc());
                         $hash = md5($usernameRow . $_COOKIE["ident"]);
                         if ($hash == $_COOKIE["secure"]){
-                            
+                            header("Location: ../teacher");
                         }else {
                             header("Location: ../");
                         }
