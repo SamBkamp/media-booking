@@ -74,7 +74,7 @@
         </tr>
         <?php 
             if($_COOKIE["ident"] == "teacher"){
-                $selection = "SELECT id, name, avail FROM bookingitems WHERE avail = 'Booked'";
+                $selection = "SELECT id, name, avail, date FROM bookingitems WHERE avail = 'Booked'";
             }else{
                 $selection = "SELECT id, name, avail, date FROM bookingitems";
             }
