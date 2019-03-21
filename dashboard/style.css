@@ -245,7 +245,7 @@ button{
     height: 150%;
     transition: 0.5s;
     cursor: pointer;
-    visibility: hidden;
+    visibility: visible;
     
 }
 #return {
