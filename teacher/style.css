@@ -239,6 +239,7 @@ button{
     border-radius: 10%; */
     transition: 0.5s;
     display: inline-block;
+    visibility: hidden;
 }
 #userBar{
     margin-left: 60vw;
@@ -250,6 +251,7 @@ button{
     height: 150%;
     transition: 0.5s;
     cursor: pointer;
+    
 }
 #return {
     height: 100%;
