@@ -36,4 +36,9 @@ if (isset($_GET["item"])){
     }
 }
 
+if (isset($_GET["logout"])){
+    setcookie("ident", "noo", time() - (86400 * 30), "/");
+	setcookie("secure", "yar", time() - (86400 * 30), "/");
+}
+
 ?>
