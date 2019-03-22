@@ -19,7 +19,7 @@ if(isset($_GET["q"])){
 
 
 if(isset($_GET["r"])){  
-    $r = $_GET["r"];
+$r = $_GET["r"];
     if(isset($_COOKIE["shopping"])){
         $yes = unserialize($_COOKIE["shopping"]);
         $key = array_search($r, $yes);
@@ -43,6 +43,14 @@ if(isset($p)){
                 if ($check == "Available"){
                     $sql = "UPDATE bookingitems SET date= '" . strtotime(date("d.m.y")) . "' WHERE id='" . $i . "'"; 
                     $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                    $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                    $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                    $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
+        $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
+                    $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
+        $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
                     $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
                     if ($conn->query($sql) === TRUE) {
                         $uploadok = "succ";

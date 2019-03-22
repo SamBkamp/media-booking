@@ -25,6 +25,8 @@ $(".button-two").click(function(){
                 }
                 
             }
+
+            
             };
             xhttp.open("GET", "shoppingcart.php?p=send", true);
             xhttp.send();
