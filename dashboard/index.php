@@ -49,7 +49,7 @@
 </div>
         <!-- =START OF NAV= -->
       <div id="navWrapper">
-        <img src="circle_placeholder.png" class="logoPlaceHolder"/>
+        <img src="/resources/sislogo.png" class="logoPlaceHolder"/>
         <img src="/resources/exit.png" id="addFile"/>
         <img src="/resources/caution.png" id="report"/>
         

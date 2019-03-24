@@ -1,9 +1,14 @@
 $("#returnico").click(function(){
   $("#grey").css("visibility", "visible");
+  $("#title").html("Manually return a student");
 });
 
 $("#grey").click(function(){
-  $("#grey").css("visibility", "hidden");
+});
+
+$("#studentAdd").click(function(){
+  $("#grey").css("visibility", "visible");
+  $("#title").html("Add students to service");
 });
 
 
