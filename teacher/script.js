@@ -44,3 +44,25 @@ $("#addFile").click(function(){
   xhttp.send();
   
 });
+
+
+var toCopy  = document.getElementById( 'joinClass' ),
+    btnCopy = document.getElementById( 'copy' );
+
+btnCopy.addEventListener( 'click', function(){
+  toCopy.select();
+  console.log("yar");
+  if ( document.execCommand( 'copy' ) ) {
+      btnCopy.classList.add( 'copied' );
+    
+      var temp = setInterval( function(){
+        btnCopy.classList.remove( 'copied' );
+        clearInterval(temp);
+      }, 600 );
+    
+  } else {
+    console.info( 'document.execCommand went wrong…' )
+  }
+  
+  return false;
+} );

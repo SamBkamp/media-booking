@@ -299,9 +299,10 @@ button{
     display: block;
 }
 #joinClass{
-    display:block;
-    margin: 0 auto;
-
+    display: block;
+    margin: 10% auto;
+    width: 50%;
+    text-align: center;
 }
 #title {
     text-align: center;
@@ -312,7 +313,38 @@ button{
 #closeWindow {
     height: 4%;
     float: right;
-    margin: 3% 6%;
+    margin: 4% 4%;
     cursor: pointer;
     display: block;
 }
+#copy {
+    position: relative;
+    padding: 8px 20px;
+    border: 0;
+    font-size: 0.835em;
+    text-transform: uppercase;
+    letter-spacing: 0.125em;
+    font-weight: bold;
+    color: #FFF;
+    background: #8fa423;
+    transition: background .275s;
+    margin: -5% auto;
+    display: block;
+  }
+  #copy:hover,
+  #copy:focus {
+    background: #74861A;
+  }
+  .copiedtext {
+    position: absolute;
+    left: 0; top: 0; right: 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-1em);
+    color: #000;
+    transition: all .500s;
+  }
+  .copied .copiedtext {
+    opacity: 1;
+    transform: translateY(-2em);
+  }

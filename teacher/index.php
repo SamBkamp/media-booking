@@ -44,10 +44,10 @@
     
 
     <div id="container">
-    <img src="/resources/multiply.png" id="closeWindow"/>
-    <h3 id="title"></h3>
-    <input id="joinClass" value="amp" disabled="disabled"/>
-    
+        <img src="/resources/multiply.png" id="closeWindow"/>
+        <h3 id="title"></h3>
+        <input id="joinClass" value="<?php echo("localhost/signup?user=" . $_COOKIE["ident"] . "&oauth=" . sha1($_COOKIE["ident"] . time()));?>" readonly/>
+        <button id="copy" type="button">Copy in clipboard<span class="copiedtext" aria-hidden="true">Copied</span></button>
     </div>
 </div>
         <!-- =START OF NAV= -->
