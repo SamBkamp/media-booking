@@ -44,14 +44,16 @@
     
 
     <div id="container">
-    <h3 id="title">Manually return a student</h3>
+    <h3 id="title"></h3>
+    <input id="joinClass" value="amp" type="disabled"/>
     
     </div>
 </div>
         <!-- =START OF NAV= -->
       <div id="navWrapper">
-        <img src="circle_placeholder.png" class="logoPlaceHolder"/>
+        <img src="/resources/sislogo.png" class="logoPlaceHolder"/>
         <img src="/resources/exit.png" id="addFile"/>
+        <img src="/resources/add.png" id="studentAdd">
 
       </div>
     <!-- =END OF NAV= -->

@@ -125,15 +125,27 @@ padding-left: 20px;
     width: 50%;
     margin: 40px auto;
     display: block;
-}
-#addFile:hover {
     cursor: pointer;
-    content: url("/media/addfileshover.png");
+}
+#studentAdd {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: 0.5s;
+}
+#studentAdd:hover {
+    /* filter: hue-rotate(45deg);
+    -webkit-filter: hue-rotate(45deg); */
+    box-shadow: 10% 10% 5% 5% red;
+    -moz-box-shadow: 10% 10% 5% 5% red;
+}
 }
 .fileType {
     height: 4vh;
     margin-left: 0vw;
     width: 30%;
+    
 }
 button{
     color:#fff;

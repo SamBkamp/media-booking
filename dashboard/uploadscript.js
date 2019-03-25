@@ -15,16 +15,18 @@ $(".button-two").click(function(){
                 }else if(xhttp.responseText == "some items you chose have already been booked"){
                         $("#warning").text("warning: Some items you have chosen have already been booked");
                         $("#grey").css("visibility", "visible");
-                        setTimeout(explode, 10000);
+                        setTimeout(explode, 3000);
                 }else {
                     //$("#warning").html(xhttp.responseText);
                     $("#warning").html("one or more of your items could not be booked due to an internal error");
                     $("#grey").css("visibility", "visible");
-                    setTimeout(explode, 10000);
+                    setTimeout(explode, 3000);
                     
                 }
                 
             }
+
+            
             };
             xhttp.open("GET", "shoppingcart.php?p=send", true);
             xhttp.send();
@@ -36,3 +38,16 @@ $(".button-two").click(function(){
 function explode(){
     window.location.replace("/dashboard");
 }
+
+$("#addFile").click(function(){
+    console.log("yar");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        window.location.replace("/");
+      }
+    };
+    xhttp.open("GET", "../teacher/return.php?logout=true", true);
+    xhttp.send();
+    
+  });

@@ -50,5 +50,15 @@ function booking(elm, id){
 } 
 
 
-
-
+$("#addFile").click(function(){
+  console.log("yar");
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      window.location.replace("/");
+    }
+  };
+  xhttp.open("GET", "../teacher/return.php?logout=true", true);
+  xhttp.send();
+  
+});
