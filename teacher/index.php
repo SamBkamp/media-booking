@@ -44,8 +44,9 @@
     
 
     <div id="container">
+    <img src="/resources/multiply.png" id="closeWindow"/>
     <h3 id="title"></h3>
-    <input id="joinClass" value="amp" type="disabled"/>
+    <input id="joinClass" value="amp" disabled="disabled"/>
     
     </div>
 </div>
@@ -88,6 +89,7 @@
                 }else{
                     $color = 'green';
                     $in = "Available";
+
                     $chose = 'Book';
                 }
                 echo ("<tr class='hover'>

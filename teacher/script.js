@@ -11,6 +11,9 @@ $("#studentAdd").click(function(){
   $("#title").html("Add students to service");
 });
 
+$("#closeWindow").click(function(){
+  $("#grey").css("visibility", "hidden");
+});
 
 function booking(cookie, id, ident) {
     var xhttp = new XMLHttpRequest();
