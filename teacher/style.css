@@ -52,13 +52,19 @@ body {
     border-collapse: collapse;
 }
 .fileName {
-    width: 60%;
+    width: 40%;
+    text-align: left;
+    border-bottom: 2px solid #e6e6e6;
+    padding-left: 5px;
+}
+.lastUser {
+    width: 29%;
     text-align: left;
     border-bottom: 2px solid #e6e6e6;
     padding-left: 5px;
 }
 .owner {
-    width: 28%;
+    width: 18%;
     text-align: left;
     border-bottom: 2px solid #e6e6e6;
     padding-left: 20px;
@@ -119,21 +125,27 @@ padding-left: 20px;
     width: 50%;
     margin: 40px auto;
     display: block;
-}
-#addFile:hover {
     cursor: pointer;
-    content: url("/media/addfileshover.png");
 }
-#report{
-    width: 50%;
-    cursor: pointer;
-    margin: auto;
+#studentAdd {
+    width: 60%;
     display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: 0.5s;
 }
+#studentAdd:hover {
+    /* filter: hue-rotate(45deg);
+    -webkit-filter: hue-rotate(45deg); */
+    box-shadow: 10% 10% 5% 5% red;
+    -moz-box-shadow: 10% 10% 5% 5% red;
+}
+
 .fileType {
     height: 4vh;
     margin-left: 0vw;
     width: 30%;
+    
 }
 button{
     color:#fff;
@@ -223,7 +235,7 @@ button{
     color: green;
 }
 .hidden {
-    visibility: hidden;
+    visibility: visible;
 }
 .booknow{
     text-align: center;
@@ -251,7 +263,6 @@ button{
     height: 150%;
     transition: 0.5s;
     cursor: pointer;
-    visibility: visible;
     
 }
 #return {
@@ -278,7 +289,7 @@ button{
     position: absolute;
     width: 60vw;
     height: 80vh;
-    border-radius: 10%;
+    border-radius: 5%;
     background-color: white;
     margin-left: 20vw;
     margin-top: 10vh;
@@ -287,7 +298,7 @@ button{
     margin: 13% auto;
     display: block;
 }
-#copyPaste{
+#joinClass{
     display:block;
     margin: 0 auto;
 
@@ -295,5 +306,13 @@ button{
 #title {
     text-align: center;
     font-size: 140%;
-    margin-top: 5%;
+    margin-top: 9%;
+    display: block;
+}
+#closeWindow {
+    height: 4%;
+    float: right;
+    margin: 3% 6%;
+    cursor: pointer;
+    display: block;
 }

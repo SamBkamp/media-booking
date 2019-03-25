@@ -17,10 +17,12 @@
                         $usernameRow = implode($usernameResult->fetch_assoc());
                         $hash = md5($usernameRow . $_COOKIE["ident"]);
                         if ($hash == $_COOKIE["secure"]){
-                            header("Location: ../teacher");
+                            
                         }else {
                             header("Location: ../");
                         }
+                    }else {
+                        header("Location: ../dashboard");
                     }
 
                 }else {
@@ -42,17 +44,18 @@
     
 
     <div id="container">
-    <h3 id="title">Have a teacher scan this code to return your equipment</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost/dashboard/return.php?r=<?php echo($_COOKIE["ident"]) ?>" id="qrcode"/>
-    <input disabled="disabled" value="http://localhost/dashboard/return.php?r=<?php echo($_COOKIE["ident"]) ?>" id="copyPaste">
+    <img src="/resources/multiply.png" id="closeWindow"/>
+    <h3 id="title"></h3>
+    <input id="joinClass" value="amp" disabled="disabled"/>
+    
     </div>
 </div>
         <!-- =START OF NAV= -->
       <div id="navWrapper">
         <img src="/resources/sislogo.png" class="logoPlaceHolder"/>
         <img src="/resources/exit.png" id="addFile"/>
-        <img src="/resources/caution.png" id="report"/>
-        
+        <img src="/resources/add.png" id="studentAdd">
+
       </div>
     <!-- =END OF NAV= -->
       <div id="topNav">
@@ -70,31 +73,30 @@
         <table id="table">
         <tr>
           <th class="fileName header">Equipment</th>
+          <th class="header lastUser">Borrower</th>
           <th class="owner header">Availability</th>
           <th class="doctype header"></th>
         </tr>
         <?php 
-            if($_COOKIE["ident"] == "teacher"){
-                $selection = "SELECT id, name, avail, date FROM bookingitems WHERE avail = 'Booked'";
-            }else{
-                $selection = "SELECT id, name, avail, date FROM bookingitems";
-            }
+                $selection = "SELECT id, name, avail, date, last FROM bookingitems WHERE avail = 'Booked'";
             $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
             while($row = $selectionQuery->fetch_assoc()) {
                 if ($row["avail"] == "Booked"){
                     $color = 'red';
-                    $yelp = "hidden";
-                    $in = "Available on " . Date('d-m-y', strtotime("+4 days", $row["date"]));
+                    $chose = 'Return';
+                    $in = "Due Back " . Date('d-m-y', strtotime("+4 days", $row["date"]));
                     
                 }else{
                     $color = 'green';
-                    $yelp = "";
                     $in = "Available";
+
+                    $chose = 'Book';
                 }
                 echo ("<tr class='hover'>
-                <td class='files fileName'/> " . $row["name"] . "</td>
+                <td class='files fileName'> " . $row["name"] . "</td>
+                <td class='files lastUser'> " . $row["last"] . "</td>
                 <td class='owner files name " . $color . "' >" . $in  ."</td>
-                <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
+                <td class='doctype'><div class='fileType' onClick='booking(\"" . md5($_COOKIE["secure"]) . "\", \"" . $row["id"] . "\", \"" . $_COOKIE["ident"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>" . $chose ."</span></button></div></td>
                 </tr>");
             }    
 

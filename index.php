@@ -50,7 +50,7 @@ if(isset($_POST["username"])){
 				$check = md5($idRow . $_POST["username"]);
 				setcookie("ident", $_POST["username"], time() + (86400 * 30), "/"); #if its correct, generates secure hash with id and username (schould be secure enough)
 				setcookie("secure", $check, time() + (86400 * 30), "/");
-				header("Location: /dashboard/index.php");
+				header("Location: /teacher/index.php");
 			}else {
 				$GLOBALS["message"] = "Username and Password do not match."; #take a wild guess
 			}

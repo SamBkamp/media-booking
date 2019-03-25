@@ -52,7 +52,7 @@
         <!-- =START OF NAV= -->
       <div id="navWrapper">
         <img src="circle_placeholder.png" class="logoPlaceHolder"/>
-                <img src="/media/addfiles.png" id="addFile"/>
+                <img src="/resources/exit.png" id="addFile"/>
 
       </div>
     <!-- =END OF NAV= -->

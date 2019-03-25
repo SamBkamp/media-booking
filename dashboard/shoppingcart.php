@@ -19,7 +19,7 @@ if(isset($_GET["q"])){
 
 
 if(isset($_GET["r"])){  
-    $r = $_GET["r"];
+$r = $_GET["r"];
     if(isset($_COOKIE["shopping"])){
         $yes = unserialize($_COOKIE["shopping"]);
         $key = array_search($r, $yes);
@@ -43,26 +43,34 @@ if(isset($p)){
                 if ($check == "Available"){
                     $sql = "UPDATE bookingitems SET date= '" . strtotime(date("d.m.y")) . "' WHERE id='" . $i . "'"; 
                     $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                    $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                    $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                    $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
+        $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
+                    $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
+        $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
                     $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
                     if ($conn->query($sql) === TRUE) {
-                        $uploadok = 1;
+                        $uploadok = "succ";
                     } else {
-                        $uploadok = 0;
+                        $uploadok = "fail";
                     }
                     if ($conn->query($sql2) === TRUE) {
-                        $uploadok2 = 1;
+                        $uploadok2 = "succ";
                     } else {
-                        $uploadok2 = 0;
+                        $uploadok2 = "fail";
                     }
                     if ($conn->query($sql3) === TRUE) {
-                        $uploadok3 = 1;
+                        $uploadok3 = "succ";
                     } else {
-                        $uploadok3 = 0;
+                        $uploadok3 = "fail";
                     }
-                    if ($uploadok == 1 and $uploadok2 == 1 and $uploadok3 == 1){
-                        echo("everything-ok");
+                    if ($uploadok == "succ" and $uploadok2 == "succ" and $uploadok3 == "succ"){
+                        echo("");
                     }else{
-
+                        echo($uploadok . " + "  . $uploadok2 . " + " . $uploadok3);
                     }
                 }else {
                     echo("some items you chose have already been booked");
