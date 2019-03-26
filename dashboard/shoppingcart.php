@@ -77,7 +77,7 @@ if(isset($_GET["p"])){
 
 
 
-if(isset($_POST["message"])){
+if(isset($_POST["message"]) and $_POST["message"] != ""){
     $insertion = "INSERT INTO complaints (message, user) VALUES ('" . $conn->real_escape_string($_POST["message"]) . "','" . $conn->real_escape_string($_COOKIE["ident"]) . "')";
     if ($conn->query($insertion) === TRUE) {
         echo("thanks for your feedback!");
@@ -85,7 +85,7 @@ if(isset($_POST["message"])){
         echo("works");
     }
 }else {
-    echo("please dont leave the field blank");
+    echo("please don't leave the field blank");
 }
 
 ?>
