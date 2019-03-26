@@ -1,6 +1,7 @@
 $("#returnico").click(function(){
   $("#grey").css("visibility", "visible");
-  $("#title").html("Manually return a student");
+  $("#container2").css("visibility", "visible");
+
 });
 
 $("#grey").click(function(){
@@ -8,11 +9,18 @@ $("#grey").click(function(){
 
 $("#studentAdd").click(function(){
   $("#grey").css("visibility", "visible");
-  $("#title").html("Add students to service");
+  $(".title").html("Add students to service");
+  $("#container").css("visibility", "visible");
 });
 
 $("#closeWindow").click(function(){
   $("#grey").css("visibility", "hidden");
+  $("#container").css("visibility", "hidden");
+});
+
+$("#closeWindow2").click(function(){
+  $("#grey").css("visibility", "hidden");
+  $("#container2").css("visibility", "hidden");
 });
 
 function booking(cookie, id, ident) {
