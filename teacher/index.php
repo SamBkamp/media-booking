@@ -46,7 +46,7 @@
     <div id="container">
         <img src="/resources/multiply.png" id="closeWindow"/>
         <h3 id="title"></h3>
-        <input id="joinClass" value="<?php echo("localhost/signup.php?user=" . $_COOKIE["ident"] . "&oauth=" . sha1($_COOKIE["ident"] . time()));?>" readonly/>
+        <input id="joinClass" value="<?php echo("localhost:8080/signup.php?user=" . $_COOKIE["ident"] . "&oauth=" . sha1($_COOKIE["ident"] . date("dmy")))?>" readonly/>
         <button id="copy" type="button">Copy in clipboard<span class="copiedtext" aria-hidden="true">Copied</span></button>
         <h3 id="warningClass">Warning:</h3>
         <h4 id="warningText">this link will expire by the end of the day</h4>
