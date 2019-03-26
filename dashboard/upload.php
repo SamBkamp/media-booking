@@ -51,7 +51,7 @@
 
         <!-- =START OF NAV= -->
       <div id="navWrapper">
-        <img src="circle_placeholder.png" class="logoPlaceHolder"/>
+        <a href="/dashboard"><img src="https://alumni.sis.edu.hk/site/SIS/upload/mw_data/file/mw_data_53312_586dbce1a6091.png" class="logoPlaceHolder"/></a>
                 <img src="/resources/exit.png" id="addFile"/>
 
       </div>

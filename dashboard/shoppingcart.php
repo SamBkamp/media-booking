@@ -29,8 +29,9 @@ $r = $_GET["r"];
     }
 }
 
-$p = $_GET["p"];
-if(isset($p)){
+
+if(isset($_GET["p"])){
+    $p = $_GET["p"];
     if (isset($_COOKIE{"shopping"})){
         if (empty(unserialize($_COOKIE["shopping"]))){
             echo("basket is empty");
@@ -43,14 +44,6 @@ if(isset($p)){
                 if ($check == "Available"){
                     $sql = "UPDATE bookingitems SET date= '" . strtotime(date("d.m.y")) . "' WHERE id='" . $i . "'"; 
                     $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
-        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
-                    $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
-        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
-                    $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
-                    $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
-        $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
-                    $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
-        $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
                     $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
                     if ($conn->query($sql) === TRUE) {
                         $uploadok = "succ";
@@ -81,4 +74,18 @@ if(isset($p)){
         echo("Empty Basket");
     }
 }
+
+
+
+if(isset($_POST["message"]) and $_POST["message"] != ""){
+    $insertion = "INSERT INTO complaints (message, user) VALUES ('" . $conn->real_escape_string($_POST["message"]) . "','" . $conn->real_escape_string($_COOKIE["ident"]) . "')";
+    if ($conn->query($insertion) === TRUE) {
+        echo("thanks for your feedback!");
+    } else {
+        echo("works");
+    }
+}else {
+    echo("please don't leave the field blank");
+}
+
 ?>

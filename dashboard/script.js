@@ -62,3 +62,30 @@ $("#addFile").click(function(){
   xhttp.send();
   
 });
+
+var change = 0;
+
+$("#report").click(function(){
+  if (change == 0){
+    $("#reported").css("visibility", "visible");
+    change = change+1;
+    console.log(change);
+  }else {
+    $("#reported").css("visibility", "hidden");
+    change = change-1;
+    console.log(change);
+  }
+});
+
+$("#sumbutton").click(function(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      $("#errno").html(xhttp.responseText);
+    }
+  };
+  xhttp.open("POST", "shoppingcart.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("message=" + $("#areaText").val());
+  $("#areaText").val("");
+});

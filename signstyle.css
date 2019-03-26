@@ -1,0 +1,102 @@
+/* =START OF NAV= */
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+body {
+    font-family: Nanum Gothic;
+}
+
+#login {
+    position: relative;
+    height: 400px;
+    width: 400px;
+    background-color: #d9d9d9;
+    border-radius: 15px 80px;
+    margin: 0 auto;
+    top: 25vh;
+    /* transition: 1s; */
+    box-shadow: 0px 5px 15px 1px #b3b3b3;
+}
+
+#login {
+    text-align: center;
+}
+
+#userinput {
+    font-family: Nanum Gothic;
+    font-size: 14px;
+    position: relative;
+    top: 25px;
+}
+
+.wrapper {
+    position: relative;
+    top: 60px;
+}
+
+#passinput {
+    font-family: Nanum Gothic;
+    font-size: 14px;
+    display: block;
+    margin: 0 auto;
+        position: relative;
+    top: -px;
+}
+
+#submit {
+    position: relative;
+    top: 65px;
+    display: block;
+    margin: 0 auto;
+    background-color: #4285f4;
+    border: none;
+    width: 65px;
+    height: 35px;
+    border-radius: 10%;
+    font-family: Nanum Gothic;
+    color: #d9d9d9;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.log {
+    display: inline-block;
+}
+
+#tab {
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+    font-size: 20px;
+}
+
+#slash {
+    margin: 0 2.5px 0 2.5px;
+    color: #595959;
+}
+
+#SignUp {
+    color: #595959;
+    cursor: pointer;
+}
+
+#SignUp:hover {
+    color: #000000;
+}
+
+#username {
+    position: relative;
+    top: 0px;
+}
+
+#password {
+    position: relative;
+    top: 0px;
+}
+
+#check {
+    position: relative;
+    top: 60px;
+    color: red;
+}

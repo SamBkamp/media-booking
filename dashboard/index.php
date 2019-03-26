@@ -49,9 +49,11 @@
 </div>
         <!-- =START OF NAV= -->
       <div id="navWrapper">
-        <img src="/resources/sislogo.png" class="logoPlaceHolder"/>
+        <img src="https://alumni.sis.edu.hk/site/SIS/upload/mw_data/file/mw_data_53312_586dbce1a6091.png" class="logoPlaceHolder"/>
         <img src="/resources/exit.png" id="addFile"/>
+        <div id="spacer"></div>
         <img src="/resources/caution.png" id="report"/>
+        
         
       </div>
     <!-- =END OF NAV= -->
@@ -59,6 +61,12 @@
       <?php
         
       ?>
+      <div id="reported">
+                <h3 id="op">Opinions/Bugs? let us know!</h3>
+                <textarea id="areaText" placeholder="type here..."></textarea>
+                <button id="sumbutton">Submit</button>
+                <p id="errno"></p>
+      </div>
         <div id="welcomeMessage">
         <p id="welcome" class="welcome">Hey, <span class="welcome"><strong><?php echo(htmlspecialchars($_COOKIE["ident"]));?></strong></span></p>
             <div id="userBar">
