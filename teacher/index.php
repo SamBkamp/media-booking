@@ -2,7 +2,7 @@
     if(isset($_COOKIE["shopping"])){
         setcookie("shopping", "", time() - 3200, "/");
     }
-
+#its been cleaned
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
         $mysqli = new mysqli("localhost", "root", "","userbase");
                 if (isset($_COOKIE["ident"])) {
                     if(isset($_COOKIE["secure"])){
-                        $usernameQuery = "SELECT id FROM userData WHERE username ='" . $_COOKIE["ident"] . "'";
+                        $usernameQuery = "SELECT id FROM userData WHERE username ='" . $mysqli->real_escape_string($_COOKIE["ident"]) . "'";
                         $usernameResult = $mysqli->query($usernameQuery) or die($mysqli->error);
                         $usernameRow = implode($usernameResult->fetch_assoc());
                         $hash = md5($usernameRow . $_COOKIE["ident"]);
@@ -46,7 +46,7 @@
     <div id="container">
         <img src="/resources/multiply.png" id="closeWindow"/>
         <h3 class="title"></h3>
-        <input id="joinClass" value="<?php echo("localhost:8080/signup.php?user=" . $_COOKIE["ident"] . "&oauth=" . sha1($_COOKIE["ident"] . date("dmy")))?>" readonly/>
+        <input id="joinClass" value="<?php echo("localhost:8080/signup.php?user=" . htmlspecialchars($_COOKIE["ident"]) . "&oauth=" . sha1($_COOKIE["ident"] . date("dmy")))?>" readonly/>
         <button id="copy" type="button">Copy in clipboard<span class="copiedtext" aria-hidden="true">Copied</span></button>
         <h3 id="warningClass">Warning:</h3>
         <h4 id="warningText">this link will expire by the end of the day</h4>
@@ -102,7 +102,7 @@
                 <td class='files fileName'> " . $row["name"] . "</td>
                 <td class='files lastUser'> " . $row["last"] . "</td>
                 <td class='owner files name " . $color . "' >" . $in  ."</td>
-                <td class='doctype'><div class='fileType' onClick='booking(\"" . md5($_COOKIE["secure"]) . "\", \"" . $row["id"] . "\", \"" . $_COOKIE["ident"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>" . $chose ."</span></button></div></td>
+                <td class='doctype'><div class='fileType' onClick='booking(\"" . htmlspecialchars(md5($_COOKIE["secure"])) . "\", \"" . $row["id"] . "\", \"" . htmlspecialchars($_COOKIE["ident"]) . "\")'><button class='button-two' id='" . $row["id"] . "'><span>" . $chose ."</span></button></div></td>
                 </tr>");
             }    
 

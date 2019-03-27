@@ -16,7 +16,7 @@ body {
     overflow-x: hidden;
 }
 
-#content {
+#content {  
     min-height: 100%;
     padding: 0px;
 }

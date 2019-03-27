@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body{
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-family: Lato;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+html {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#container {
+    display: block;
+    height: 45vh;
+    width: 70vw;
+    margin: 27.5vh auto;
+    text-align: center;
+    /* background-color: red; */
+}
+#displayImage {
+    margin-top: 7%;
+    height: 30%;
+}
+#title{
+    display: block;
+}
+#explain{
+    margin-top: 7%;
+}

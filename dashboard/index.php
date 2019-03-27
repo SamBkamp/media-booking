@@ -2,6 +2,7 @@
     if(isset($_COOKIE["shopping"])){
         setcookie("shopping", "", time() - 3200, "/");
     }
+#cleaned I think
 
 ?>
 
@@ -43,7 +44,7 @@
 
     <div id="container">
     <h3 id="title">Have a teacher scan this code to return your equipment</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost/dashboard/return.php?r=<?php echo($_COOKIE["ident"]) ?>" id="qrcode"/>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost/dashboard/return.php?r=<?php echo(htmlspecialchars($_COOKIE["ident"])) ?>" id="qrcode"/>
     <input disabled="disabled" value="http://localhost/dashboard/return.php?r=<?php echo($_COOKIE["ident"]) ?>" id="copyPaste">
     </div>
 </div>
@@ -82,11 +83,9 @@
           <th class="doctype header"></th>
         </tr>
         <?php 
-            if($_COOKIE["ident"] == "teacher"){
-                $selection = "SELECT id, name, avail, date FROM bookingitems WHERE avail = 'Booked'";
-            }else{
-                $selection = "SELECT id, name, avail, date FROM bookingitems";
-            }
+            
+                $selection = "SELECT id, name, avail, date FROM bookingitems ORDER BY id";
+                $amountCheck = $mysqli->query("SELECT name FROM bookingitems WHERE last='" . $_COOKIE["ident"] . "'");
             $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
             while($row = $selectionQuery->fetch_assoc()) {
                 if ($row["avail"] == "Booked"){
@@ -96,8 +95,13 @@
                     
                 }else{
                     $color = 'green';
-                    $yelp = "";
+                    
                     $in = "Available";
+                    if($amountCheck->num_rows > 3){
+                        $yelp = "hidden";
+                    }else {
+                        $yelp = "";
+                    }
                 }
                 echo ("<tr class='hover'>
                 <td class='files fileName'/> " . $row["name"] . "</td>
