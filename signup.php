@@ -25,8 +25,8 @@ if(isset($_GET["user"]) and isset($_GET["oauth"])){
 
 if (isset($_POST["username"])){
     if($signinok == 1){
-        $checkuser = $mysqli->query("SELECT name FROM bookingitems WHERE name='" . $_POST["username"] . "'");
-        if($checkuser->num_rows >! 1){
+        $checkuser = $mysqli->query("SELECT username FROM userData WHERE username='" . $_POST["username"] . "'");
+        if($checkuser->num_rows == 0){
             $insertion = "INSERT INTO userData(username, password, teacher) VALUES('" . $_POST["username"] . "', '', 0)"; 
             if ($mysqli->query($insertion) === TRUE) {
                 $GLOBALS['message'] = "success";
