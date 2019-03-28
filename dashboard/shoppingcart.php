@@ -37,38 +37,67 @@ if(isset($_GET["p"])){
             echo("basket is empty");
 
         }else{
-            foreach (unserialize($_COOKIE["shopping"]) as $i){
-                $availCheck = "SELECT avail FROM bookingitems WHERE id = '" . $i . "'";
-                $selectionQuery = $conn->query($availCheck) or die($conn->error);
-                $check = implode($selectionQuery->fetch_assoc());
-                if ($check == "Available"){
-                    $sql = "UPDATE bookingitems SET date= '" . strtotime(date("d.m.y")) . "' WHERE id='" . $i . "'"; 
-                    $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
-                    $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'"; 
-                    if ($conn->query($sql) === TRUE) {
-                        $uploadok = "succ";
-                    } else {
-                        $uploadok = "fail";
-                    }
-                    if ($conn->query($sql2) === TRUE) {
-                        $uploadok2 = "succ";
-                    } else {
-                        $uploadok2 = "fail";
-                    }
-                    if ($conn->query($sql3) === TRUE) {
-                        $uploadok3 = "succ";
-                    } else {
-                        $uploadok3 = "fail";
-                    }
-                    if ($uploadok == "succ" and $uploadok2 == "succ" and $uploadok3 == "succ"){
-                        echo("");
-                    }else{
-                        echo($uploadok . " + "  . $uploadok2 . " + " . $uploadok3);
-                    }
-                }else {
-                    echo("some items you chose have already been booked");
-                }
             }
+            $num = 0;
+            foreach (unserialize($_COOKIE["shopping"]) as $i){
+                $num = $num +1;
+                
+            } if($num > 4){
+                echo("you have too many thing booked");
+                exit();
+            } else {
+
+            }
+                $amountCheck = $conn->query("SELECT name FROM bookingitems WHERE last='" . $_COOKIE["ident"] . "'");
+                $availCheck = "SELECT avail FROM bookingitems WHERE id = '" . $i . "'";
+                if($amountCheck->num_rows <= 4 and $num <= 4-$amountCheck->num_rows){    
+                
+                }else {
+                    echo("you have too many thing booked");
+                    exit();
+                }
+
+                foreach (unserialize($_COOKIE["shopping"]) as $i){
+                    $selectionQuery = $conn->query($availCheck) or die($conn->error);
+                    $check = implode($selectionQuery->fetch_assoc());
+                    
+                    if ($check == "Available"){
+                        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                        $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'";
+                        $sql = "UPDATE bookingitems SET date='" . strtotime($_GET["datein"]) . "' WHERE id='" . $i . "'";
+                        $sql4 = "UPDATE bookingitems SET dateout='" . strtotime($_GET["dateout"]) . "' WHERE id='" . $i . "'";
+
+                        
+                        if ($conn->query($sql) === TRUE) {
+                            $uploadok = "succ";
+                        } else {
+                            $uploadok = "fail";
+                        }
+                        if ($conn->query($sql2) === TRUE) {
+                            $uploadok2 = "succ";
+                        } else {
+                            $uploadok2 = "fail";
+                        }
+                        if ($conn->query($sql3) === TRUE) {
+                            $uploadok3 = "succ";
+                        } else {
+                            $uploadok3 = "fail";
+                        }
+                        if ($conn->query($sql4) === TRUE) {
+                            $uploadok4 = "succ";
+                        } else {
+                            $uploadok4 = "fail";
+                        }
+                        if ($uploadok == "succ" and $uploadok2 == "succ" and $uploadok3 == "succ" and $uploadok4 == "succ"){
+                            echo("");
+                        }else{
+                            echo($uploadok2 . " + " . $uploadok3);
+                        }
+
+                    }else {
+                        echo("some items you chose have already been booked");
+                    }
+            
         }
     }else{
         echo("Empty Basket");
@@ -76,16 +105,17 @@ if(isset($_GET["p"])){
 }
 
 
-
-if(isset($_POST["message"]) and $_POST["message"] != ""){
-    $insertion = "INSERT INTO complaints (message, user) VALUES ('" . $conn->real_escape_string($_POST["message"]) . "','" . $conn->real_escape_string($_COOKIE["ident"]) . "')";
-    if ($conn->query($insertion) === TRUE) {
-        echo("thanks for your feedback!");
-    } else {
-        echo("works");
+if(isset($_POST["message"])){
+    if($_POST["message"] != ""){
+        $insertion = "INSERT INTO complaints (message, user) VALUES ('" . $conn->real_escape_string($_POST["message"]) . "','" . $conn->real_escape_string($_COOKIE["ident"]) . "')";
+        if ($conn->query($insertion) === TRUE) {
+            echo("thanks for your feedback!");
+        } else {
+            echo("works");
+        }
+    }else {
+        echo("please don't leave the field blank");
     }
-}else {
-    echo("please don't leave the field blank");
 }
 
 ?>

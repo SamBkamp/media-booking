@@ -16,9 +16,11 @@ $(".button-two").click(function(){
                         $("#warning").text("warning: Some items you have chosen have already been booked");
                         $("#grey").css("visibility", "visible");
                         setTimeout(explode, 3000);
+                }else if(xhttp.responseText == "you have too many thing booked"){
+                  alert("you have booked too many items, the maximum allowed is 4");
                 }else {
-                    //$("#warning").html(xhttp.responseText);
-                    $("#warning").html("one or more of your items could not be booked due to an internal error");
+                    $("#warning").html(xhttp.responseText);
+                    //$("#warning").html("one or more of your items could not be booked due to an internal error");
                     $("#grey").css("visibility", "visible");
                     setTimeout(explode, 3000);
                     
@@ -28,7 +30,7 @@ $(".button-two").click(function(){
 
             
             };
-            xhttp.open("GET", "shoppingcart.php?p=send", true);
+            xhttp.open("GET", "shoppingcart.php?p=send&dateout=" + $("#dateout").val()+"&datein=" + $("#datein").val(), true);
             xhttp.send();
             
             

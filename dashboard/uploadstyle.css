@@ -280,10 +280,11 @@ button{
 #container{
     width: 50%;
     height: 60%;
-    background-color: #e6e6e6;
+    background-color: white;
     opacity: 1;
     margin: 0 auto;
     margin-top: 20vh;
+    border-radius: 5%;
 } 
 #success {
     height: 40%;
@@ -314,4 +315,19 @@ button{
     width: 2%;
     margin-left: 13vw;
     margin-top: 2vh;
+}
+#dateout{
+    margin-left: 8%;
+    margin-top: 3%;
+}
+#to{
+    display: block;
+    margin-left: 8%;
+    margin-top: 1%;
+}
+#datein {
+
+    margin-left: 8%;
+    margin-top: 1%;
+    display: block;
 }

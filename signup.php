@@ -18,20 +18,24 @@ if(isset($_GET["user"]) and isset($_GET["oauth"])){
     if(sha1($_GET["user"] . date("dmy")) == $_GET["oauth"]){
         $signinok = 1;
     }else{
-        header("Location:index.php");
+        header("Location:/invalid");
     }
 }else {
-    echo("malformed query");
 }
 
 if (isset($_POST["username"])){
     if($signinok == 1){
-        $insertion = "INSERT INTO userData(username, password, teacher) VALUES('" . $_POST["username"] . "', '', 0)"; 
-        if ($mysqli->query($insertion) === TRUE) {
-            $GLOBALS['message'] = "success";
-            header("Location: index.php");
-        } else {
-            $GLOBALS['message'] = $mysqli->error;
+        $checkuser = $mysqli->query("SELECT username FROM userData WHERE username='" . $_POST["username"] . "'");
+        if($checkuser->num_rows == 0){
+            $insertion = "INSERT INTO userData(username, password, teacher) VALUES('" . $_POST["username"] . "', '', 0)"; 
+            if ($mysqli->query($insertion) === TRUE) {
+                $GLOBALS['message'] = "success";
+                header("Location: index.php");
+            } else {
+                $GLOBALS['message'] = $mysqli->error;
+            }
+        }else{
+            $GLOBALS['message'] = "user has already been taken";
         }
     }else {
         echo("either something has gone really wrong, or you're trying to hack me. In the latter case, nice try.");
@@ -65,9 +69,9 @@ if (isset($_POST["username"])){
                     <p class="log" id="logged">Signup</p>
                 </p>
             </div>
-            <form action="signup.php" method="post">
+            <form action="signup.php<?php echo("?user="  . $_GET["user"] . "&oauth=" . $_GET["oauth"])?>" method="post">
             <p id="username">VLE username:</p>
-            <input type="text" placeholder="Username" id="userinput" name="username" value=""/>
+            <input type="text" placeholder="Username" id="userinput" name="username" value="" autofocus/>
             
         </div>
         <div class="wrapper">

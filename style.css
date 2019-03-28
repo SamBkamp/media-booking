@@ -1,8 +1,8 @@
 /* =START OF NAV= */
 
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 body {
-    font-family: Nanum Gothic;
+    font-family: Lato;
 }
 
 #login {
@@ -26,6 +26,8 @@ body {
     font-size: 14px;
     position: relative;
     top: -8px;
+    display: block;
+    margin: 0 auto;
 }
 
 .wrapper {
