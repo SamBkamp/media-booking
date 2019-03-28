@@ -84,13 +84,13 @@
           <th class="doctype header"></th>
         </tr>
         <?php 
-                $selection = "SELECT id, name, avail, date, last FROM bookingitems WHERE avail = 'Booked'";
+                $selection = "SELECT id, name, avail, dateout, last FROM bookingitems WHERE avail = 'Booked'";
             $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
             while($row = $selectionQuery->fetch_assoc()) {
                 if ($row["avail"] == "Booked"){
                     $color = 'red';
                     $chose = 'Return';
-                    $in = "Due Back " . Date('d-m-y', strtotime("+4 days", $row["date"]));
+                    $in = "Due Back " . Date('d-m-y', $row["dateout"]);
                     
                 }else{
                     $color = 'green';

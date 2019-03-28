@@ -30,7 +30,7 @@ $(".button-two").click(function(){
 
             
             };
-            xhttp.open("GET", "shoppingcart.php?p=send", true);
+            xhttp.open("GET", "shoppingcart.php?p=send&dateout=" + $("#dateout").val()+"&amount=" + $("#selector").val(), true);
             xhttp.send();
             
             
