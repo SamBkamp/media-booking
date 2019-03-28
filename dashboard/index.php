@@ -84,14 +84,14 @@
         </tr>
         <?php 
             
-                $selection = "SELECT id, name, avail, dateout FROM bookingitems ORDER BY id";
+                $selection = "SELECT id, name, avail, date FROM bookingitems ORDER BY id";
                 $amountCheck = $mysqli->query("SELECT name FROM bookingitems WHERE last='" . $_COOKIE["ident"] . "'");
             $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
             while($row = $selectionQuery->fetch_assoc()) {
                 if ($row["avail"] == "Booked"){
                     $color = 'red';
                     $yelp = "hidden";
-                    $in = "Available on " . Date('d-m-y', $row["dateout"]);
+                    $in = "Available on " . Date('d-m-y', $row["date"]);
                     
                 }else{
                     $color = 'green';

@@ -318,5 +318,16 @@ button{
 }
 #dateout{
     margin-left: 8%;
-    margin-top: 2%;
+    margin-top: 3%;
+}
+#to{
+    display: block;
+    margin-left: 8%;
+    margin-top: 1%;
+}
+#datein {
+
+    margin-left: 8%;
+    margin-top: 1%;
+    display: block;
 }

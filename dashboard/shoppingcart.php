@@ -64,8 +64,8 @@ if(isset($_GET["p"])){
                     if ($check == "Available"){
                         $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
                         $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'";
-                        $sql = "UPDATE bookingitems SET date='" . strtotime($_GET["dateout"]) . "' WHERE id='" . $i . "'";
-                        $sql4 = "UPDATE bookingitems SET dateout='" . strtotime("+" . $_GET["amount"] . "days", strtotime($_GET["dateout"])) . "' WHERE id='" . $i . "'";
+                        $sql = "UPDATE bookingitems SET date='" . strtotime($_GET["datein"]) . "' WHERE id='" . $i . "'";
+                        $sql4 = "UPDATE bookingitems SET dateout='" . strtotime($_GET["dateout"]) . "' WHERE id='" . $i . "'";
 
                         
                         if ($conn->query($sql) === TRUE) {

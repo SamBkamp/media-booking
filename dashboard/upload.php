@@ -94,13 +94,15 @@
         ?>
       </table>
       <input placeholder="Date out (dd.mm.yy)" id="dateout"/>
-    <select id="selector">
+      <p id="to">To...</p>
+      <input placeholder="Date in (dd.mm.yy)" id="datein"/>
+    <!-- <select id="selector">
         <option value="default">Days out</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-    </select> 
+    </select>  -->
       <button class='button-two'><span>Book</span></button>
 
       
