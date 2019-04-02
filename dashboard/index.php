@@ -77,11 +77,6 @@
         </div>
         </div>
         <table id="table">
-        <!-- <tr>
-          <th class="fileName header">Equipment</th>
-          <th class="owner header">Availability</th>
-          <th class="doctype header"></th>
-        </tr> -->
         <tr>
             <th class="dividers">Mics</th>
             <th class="owner files name"></th>
@@ -125,7 +120,6 @@
         <?php 
             
                 $selection = "SELECT id, name, avail, date FROM bookingitems WHERE type='cam' ORDER BY id";
-                $amountCheck = $mysqli->query("SELECT name FROM bookingitems WHERE last='" . $_COOKIE["ident"] . "'");
             $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
             while($row = $selectionQuery->fetch_assoc()) {
                 if ($row["avail"] == "Booked"){
@@ -137,11 +131,35 @@
                     $color = 'green';
                     
                     $in = "Available";
-                    if($amountCheck->num_rows > 3){
-                        $yelp = "hidden";
-                    }else {
-                        $yelp = "";
-                    }
+                }
+                echo ("<tr class='hover'>
+                <td class='files fileName'/> " . $row["name"] . "</td>
+                <td class='owner files name " . $color . "' >" . $in  ."</td>
+                <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
+                </tr>");
+            }    
+
+
+        ?>
+         <tr>
+            <th class="dividers">Accessories</th>
+            <th class="owner files name"></th>
+            <th class="doctype"></th>
+        </tr>
+        <?php 
+            
+                $selection = "SELECT id, name, avail, date FROM bookingitems WHERE type='acc' ORDER BY id";
+            $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
+            while($row = $selectionQuery->fetch_assoc()) {
+                if ($row["avail"] == "Booked"){
+                    $color = 'red';
+                    $yelp = "hidden";
+                    $in = "Available on " . Date('d-m-y', $row["date"]);
+                    
+                }else{
+                    $color = 'green';
+                    
+                    $in = "Available";
                 }
                 echo ("<tr class='hover'>
                 <td class='files fileName'/> " . $row["name"] . "</td>

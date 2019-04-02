@@ -11,6 +11,7 @@ if (isset($_GET["item"])){
             $sql = "UPDATE bookingitems SET date= '' WHERE id='" . $_GET["item"] . "'"; 
             $sql2 = "UPDATE bookingitems SET last = '' WHERE id='" . $_GET["item"] .  "'";
             $sql3 = "UPDATE bookingitems SET avail='Available' WHERE id='" . $_GET["item"] . "'"; 
+            $sql4 = "UPDATE bookingitems SET dateout='' WHERE id='" . $_GET["item"] . "'"; 
 
             if ($mysqli->query($sql) === TRUE) {
                 $uploadok = 1;
@@ -22,10 +23,12 @@ if (isset($_GET["item"])){
             }
             if ($mysqli->query($sql3) === TRUE) {
                 $uploadok3 = 1;
-            } else {
+            }if ($mysqli->query($sql4) === TRUE){
+                $uploadok4 = 1;
+            }else {
                 $uploadok3 = 0;
             }
-            if ($uploadok == 1 and $uploadok2 and $uploadok3 == 1){
+            if ($uploadok == 1 and $uploadok2 == 1 and $uploadok3 == 1 and $uploadok4 == 1){
                 echo("everything-ok");
             }else{
                 echo("something when wrong");

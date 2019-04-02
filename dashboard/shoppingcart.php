@@ -62,10 +62,18 @@ if(isset($_GET["p"])){
                     $check = implode($selectionQuery->fetch_assoc());
                     
                     if ($check == "Available"){
+                        $input = $_GET["datein"];
+                        $a = explode('.',$input);
+                        $result = $a[2].'-'.$a[1].'-'.$a[0];
+
+                        $input2 = $_GET["dateout"];
+                        $b = explode('.',$input2);
+                        $result2 = $b[2].'-'.$b[1].'-'.$b[0];
+
                         $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
                         $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'";
-                        $sql = "UPDATE bookingitems SET date='" . strtotime($_GET["datein"]) . "' WHERE id='" . $i . "'";
-                        $sql4 = "UPDATE bookingitems SET dateout='" . strtotime($_GET["dateout"]) . "' WHERE id='" . $i . "'";
+                        $sql = "UPDATE bookingitems SET date='" . strtotime($result) . "' WHERE id='" . $i . "'";
+                        $sql4 = "UPDATE bookingitems SET dateout='" . strtotime($result2) . "' WHERE id='" . $i . "'";
 
                         
                         if ($conn->query($sql) === TRUE) {

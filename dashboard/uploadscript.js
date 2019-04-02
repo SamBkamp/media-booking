@@ -22,7 +22,7 @@ $(".button-two").click(function(){
                     $("#warning").html(xhttp.responseText);
                     //$("#warning").html("one or more of your items could not be booked due to an internal error");
                     $("#grey").css("visibility", "visible");
-                    setTimeout(explode, 3000);
+                    //setTimeout(explode, 3000);
                     
                 }
                 
@@ -32,6 +32,8 @@ $(".button-two").click(function(){
             };
             xhttp.open("GET", "shoppingcart.php?p=send&dateout=" + $("#dateout").val()+"&datein=" + $("#datein").val(), true);
             xhttp.send();
+            console.log($("#datein").val());
+            console.log($("#dateout").val());
             
             
 
