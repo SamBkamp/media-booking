@@ -11,6 +11,14 @@ $message = "";
 $amp = "";
 #just a bunch of stuff to initialise the system
 
+if ($mysqli->connect_error) {
+	echo("Connection failed: 0x636f6e6572726f72 (" . $mysqli->connect_error . ")");
+	echo("<br>");
+	echo("<br>");
+	die("This is an error, please report it via email to samuel@bonnekamp.net");
+} 
+#make sure the mysql server is still alive
+
 if (isset($_COOKIE["ident"])) {
 	if  (isset($_COOKIE["secure"])){ #checks if the cookie belongs to admin account as regular accounts dont have the secure cookie (line 62)
 		$ident = $_COOKIE["ident"];
@@ -23,18 +31,20 @@ if (isset($_COOKIE["ident"])) {
 			header("Location: /dashboard/index.php"); #here if it matches the cookie
 		}
 	}else {
-		header("Location: /dashboard/index.php"); #goes to this condition if cookie is set and is not teacher account (can be faked but, might aswell just use the form lmao)
+		$ident = $_COOKIE["ident"];
+		$glasses = "SELECT id FROM userData WHERE username = '" . $mysqli->real_escape_string($ident) . "'"; #takes the id based on the ident cookie
+		$glassesQuery = $mysqli->query($glasses) or die($mysqli->error);
+		if ($glassesQuery->num_rows > 0){
+			header("Location: /dashboard/index.php"); #goes to this condition if cookie is set and is not teacher account (can be faked but, might aswell just use the form lmao)
+		}else{
+			
+		}
 	}
  }
 #cookie checking script
 
-if ($mysqli->connect_error) {
-	echo("Connection failed: 0x636f6e6572726f72 (" . $mysqli->connect_error . ")");
-	echo("<br>");
-	echo("<br>");
-	die("This is an error, please report it via email to samuel@bonnekamp.net");
-} 
-#make sure the mysql server is still alive
+
+
 
 if(isset($_POST["username"])){
 	if ($_POST["username"] == "18bonnekampsb2" or $_POST["username"] == "teacher"){ #hard coded the admin accounts (dont sue me). just put in another select and youll be good. 
@@ -79,7 +89,6 @@ if(isset($_POST["username"])){
 	#this section is for the plebians without admin accounts
 	
 }
-#main body of the script, wow I actually commented this!
 ?>
 <!DOCTYPE html>
 <html>

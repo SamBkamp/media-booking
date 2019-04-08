@@ -11,6 +11,12 @@
     <head>
         <?php
         $mysqli = new mysqli("localhost", "root", "","userbase");
+        if ($mysqli->connect_error) {
+            echo("Connection failed: 0x636f6e6572726f72 (" . $mysqli->connect_error . ")");
+            echo("<br>");
+            echo("<br>");
+            die("This is an error, please report it via email to samuel@bonnekamp.net");
+        } 
                 if (isset($_COOKIE["ident"])) {
                     if(isset($_COOKIE["secure"])){
                         $usernameQuery = "SELECT id FROM userData WHERE username ='" . $_COOKIE["ident"] . "'";
@@ -22,11 +28,20 @@
                         }else {
                             header("Location: ../");
                         }
+                    }else {
+                        $ident = $_COOKIE["ident"];
+		                $glasses = "SELECT id FROM userData WHERE username = '" . $mysqli->real_escape_string($ident) . "'"; #takes the id based on the ident cookie
+		                $glassesQuery = $mysqli->query($glasses) or die($mysqli->error);
+		                if ($glassesQuery->num_rows > 0){
+                        }else{
+                            header("Location: ../");
+                        }
                     }
 
                 }else {
                     header("Location: ../");
                 }
+                
         ?>
         <link rel="stylesheet" type="text/css" href="style.css"/>
                 <title>Dashboard</title>
@@ -34,8 +49,8 @@
     </head>
     <body>
         <?php
-        #error_reporting(0);
-        #ini_set('display_errors', 0);
+        error_reporting(0);
+        ini_set('display_errors', 0);
 
 ?>
 <!-- overlay -->
