@@ -126,4 +126,34 @@ if(isset($_POST["message"])){
     }
 }
 
+if(isset($_POST["searchTerm"])){
+    
+    $selection = "SELECT id, name, avail, date FROM bookingitems WHERE name LIKE '%" . $conn->real_escape_string($_POST["searchTerm"]) . "%'";
+    $amountCheck = $conn->query("SELECT name FROM bookingitems WHERE last='" . $conn->real_escape_string($_COOKIE["ident"]) . "'");
+    $selectionQuery = $conn->query($selection) or die($conn->error);
+    echo("<table id='table'>");
+    while($row = $selectionQuery->fetch_assoc()) {
+        if ($row["avail"] == "Booked"){
+            $color = 'red';
+            $yelp = "hidden";
+            $in = "Available on " . Date('d-m-y', $row["date"]);
+        
+        }else{
+            $color = 'green';
+            $in = "Available";
+            if($amountCheck->num_rows > 3){
+                $yelp = "hidden";
+            }else {
+                $yelp = "";
+            }
+        }
+        echo ("<tr class='hover'>
+        <td class='files fileName'/> " . $row["name"] . "</td>
+        <td class='owner files name " . $color . "' >" . $in  ."</td>
+        <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
+        </tr>");
+    }
+    echo("</table>");
+}
+
 ?>
