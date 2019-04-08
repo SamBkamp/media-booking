@@ -65,7 +65,7 @@
 </div>
         <!-- =START OF NAV= -->
       <div id="navWrapper">
-        <img src="https://alumni.sis.edu.hk/site/SIS/upload/mw_data/file/mw_data_53312_586dbce1a6091.png" class="logoPlaceHolder"/>
+        <a href="../"><img src="/resources/sislogo.png" class="logoPlaceHolder"/></a>
         <img src="/resources/exit.png" id="addFile"/>
         <div id="spacer"></div>
         <img src="/resources/caution.png" id="report"/>

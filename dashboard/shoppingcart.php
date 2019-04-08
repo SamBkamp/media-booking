@@ -131,7 +131,12 @@ if(isset($_POST["searchTerm"])){
     $selection = "SELECT id, name, avail, date FROM bookingitems WHERE name LIKE '%" . $conn->real_escape_string($_POST["searchTerm"]) . "%'";
     $amountCheck = $conn->query("SELECT name FROM bookingitems WHERE last='" . $conn->real_escape_string($_COOKIE["ident"]) . "'");
     $selectionQuery = $conn->query($selection) or die($conn->error);
-    echo("<table id='table'>");
+    #echo("<table id='table'>");
+    echo ("<tr>
+        <th class=\"dividers\">Results for \"" . htmlspecialchars($_POST["searchTerm"]) . "\"</th>
+        <th class=\"owner files name\"></th>
+        <th class=\"doctype\"></th>
+    </tr>");
     while($row = $selectionQuery->fetch_assoc()) {
         if ($row["avail"] == "Booked"){
             $color = 'red';
@@ -147,13 +152,14 @@ if(isset($_POST["searchTerm"])){
                 $yelp = "";
             }
         }
+        
         echo ("<tr class='hover'>
-        <td class='files fileName'/> " . $row["name"] . "</td>
+        <td class='files fileName'> " . $row["name"] . "</td>
         <td class='owner files name " . $color . "' >" . $in  ."</td>
         <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
         </tr>");
     }
-    echo("</table>");
+    #echo("</table>");
 }
 
 ?>

@@ -91,13 +91,15 @@ $("#sumbutton").click(function(){
 });
 
 $("#searchBar").keyup(function(){
-  $("#cleared").html("");
+  
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      
+      $("#table").empty();
       console.log();
-      $("#cleared").html(xhttp.responseText);
+      //$("#cleared").html(xhttp.responseText);
+      $("#table").html(xhttp.responseText);
+      console.log(xhttp.responseText);
     }
   }
   xhttp.open("POST", "shoppingcart.php", true);
