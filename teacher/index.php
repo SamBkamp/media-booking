@@ -54,8 +54,21 @@
     <div id="container2">
         <img src="/resources/multiply.png" id="closeWindow2"/>
         <h3 class="title">Return by student</h3>
-        <!-- <div id="insideCont">
-        </div> -->
+        <div id="insideCont">
+            <table id="studentTable">
+                <?php
+                    $selection = "SELECT DISTINCT last FROM bookingitems WHERE LENGTH(last) > 1";
+                    $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
+                    while($mow = $selectionQuery->fetch_assoc()) {
+                        echo("
+                        <tr class=\"rowT\" id=\"". $mow["last"] ."\">
+                        <td class=\"nameS fi\">". $mow["last"] ."</td>
+                        <td class=\"fi btn\"><div class='fileType' onClick='returning(\"" . htmlspecialchars(md5($_COOKIE["secure"])) . "\", \"" . $mow["last"] . "\", \"" . htmlspecialchars($_COOKIE["ident"]) . "\")'><button class='button-two'><span>Return</span></button></div></td>"
+                    );
+                    }
+                ?>
+            </table>
+        </div>
     </div>
 </div>
         <!-- =START OF NAV= -->

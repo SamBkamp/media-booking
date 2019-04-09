@@ -1,3 +1,5 @@
+var i = 0;
+
 $("#returnico").click(function(){
   $("#grey").css("visibility", "visible");
   $("#container2").css("visibility", "visible");
@@ -21,6 +23,7 @@ $("#closeWindow").click(function(){
 $("#closeWindow2").click(function(){
   $("#grey").css("visibility", "hidden");
   $("#container2").css("visibility", "hidden");
+  location.reload();
 });
 
 function booking(cookie, id, ident) {
@@ -39,6 +42,22 @@ function booking(cookie, id, ident) {
       xhttp.open("GET", "return.php?item=" + id + "&auth=" + cookie + "&ident=" + ident, true);
       xhttp.send();
 }
+function returning(cookie, sName, ident){
+  i = i + 1;
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          if (xhttp.responseText == "succ"){
+            $("#" + sName).remove();
+          }else{
+            alert(xhttp.responseText)
+          }
+        }
+      };
+      xhttp.open("GET", "return.php?name=" + sName + "&auth=" + cookie + "&ident=" + ident, true);
+      xhttp.send();
+}
+
 
 $("#addFile").click(function(){
   console.log("yar");

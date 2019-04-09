@@ -393,13 +393,13 @@ button{
 .rowT{
   width: 100%;
 }
-.name{
-    width: 75%;
+.nameS{
+    width: 65%;
     padding-left: 5% !important;
     
-}
+} 
 .btn{
-    width: 20%;
+    width: 30%;
 }
 .fi{
     padding: 1.5%;

@@ -39,6 +39,23 @@ if (isset($_GET["item"])){
     }
 }
 
+if(isset($_GET["name"])){
+    $usernameQuery = "SELECT id FROM userData WHERE username ='" . $_GET["ident"] . "'";
+    $usernameResult = $mysqli->query($usernameQuery) or die($mysqli->error);
+    $usernameRow = implode($usernameResult->fetch_assoc());
+    $hash = md5(md5($usernameRow . $_COOKIE["ident"]));
+    if ($hash == $_GET["auth"]){
+        $sql = "UPDATE bookingitems SET `date`='', avail='Available', dateout='', `last`='' WHERE `last`='" . $_GET["name"] . "'";
+        if ($mysqli->query($sql) === TRUE) {
+            echo("succ");
+        }else{
+            echo("fail");
+        }
+    }else{
+        echo("auth fail");
+    }
+}
+
 if (isset($_GET["logout"])){
     setcookie("ident", "noo", time() - (86400 * 30), "/");
 	setcookie("secure", "yar", time() - (86400 * 30), "/");
