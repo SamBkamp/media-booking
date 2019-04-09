@@ -103,14 +103,25 @@
                 </tr>
                 <?php 
                     
-                        $selection = "SELECT id, name, avail, date FROM bookingitems WHERE type='mic' ORDER BY id";
+                        $selection = "SELECT id, name, avail, date, dateout FROM bookingitems WHERE type='mic' ORDER BY id";
                         $amountCheck = $mysqli->query("SELECT name FROM bookingitems WHERE last='" . $mysqli->real_escape_string($_COOKIE["ident"]) . "'");
                     $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
                     while($row = $selectionQuery->fetch_assoc()) {
                         if ($row["avail"] == "Booked"){
                             $color = 'red';
-                            $yelp = "hidden";
-                            $in = "Available on " . Date('d-m-y', $row["date"]);
+                            
+                            if($row["dateout"] < time() and time() < $row["date"]){
+                                $yelp = "hidden";
+                                $in = "Available on " . Date('d-m-y', $row["date"]);
+                            }else{
+                                if($amountCheck->num_rows > 3){
+                                    $yelp = "hidden";
+                                }else {
+                                    $yelp = "";
+                                }
+                                $in = "Booked out " . Date('d-m-y', $row["dateout"]);
+                            }
+                            
                             
                         }else{
                             $color = 'green';
@@ -143,13 +154,29 @@
                     while($row = $selectionQuery->fetch_assoc()) {
                         if ($row["avail"] == "Booked"){
                             $color = 'red';
-                            $yelp = "hidden";
-                            $in = "Available on " . Date('d-m-y', $row["date"]);
+                            
+                            if($row["dateout"] < time() and time() < $row["date"]){
+                                $yelp = "hidden";
+                                $in = "Available on " . Date('d-m-y', $row["date"]);
+                            }else{
+                                if($amountCheck->num_rows > 3){
+                                    $yelp = "hidden";
+                                }else {
+                                    $yelp = "";
+                                }
+                                $in = "Booked out " . Date('d-m-y', $row["dateout"]);
+                            }
+                            
                             
                         }else{
                             $color = 'green';
                             
                             $in = "Available";
+                            if($amountCheck->num_rows > 3){
+                                $yelp = "hidden";
+                            }else {
+                                $yelp = "";
+                            }
                         }
                         echo ("<tr class='hover'>
                         <td class='files fileName'/> " . $row["name"] . "</td>
@@ -172,13 +199,29 @@
                     while($row = $selectionQuery->fetch_assoc()) {
                         if ($row["avail"] == "Booked"){
                             $color = 'red';
-                            $yelp = "hidden";
-                            $in = "Available on " . Date('d-m-y', $row["date"]);
+                            
+                            if($row["dateout"] < time() and time() < $row["date"]){
+                                $yelp = "hidden";
+                                $in = "Available on " . Date('d-m-y', $row["date"]);
+                            }else{
+                                if($amountCheck->num_rows > 3){
+                                    $yelp = "hidden";
+                                }else {
+                                    $yelp = "";
+                                }
+                                $in = "Booked out " . Date('d-m-y', $row["dateout"]);
+                            }
+                            
                             
                         }else{
                             $color = 'green';
                             
                             $in = "Available";
+                            if($amountCheck->num_rows > 3){
+                                $yelp = "hidden";
+                            }else {
+                                $yelp = "";
+                            }
                         }
                         echo ("<tr class='hover'>
                         <td class='files fileName'/> " . $row["name"] . "</td>
