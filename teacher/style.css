@@ -379,3 +379,29 @@ button{
       margin-top: 4%;
       color: red;
   }
+  #insideCont{
+    height: 60%;
+    width: 70%;
+    margin: 4% auto;
+    border-radius: 2%;
+    background-color: #e6e6e6;
+}
+#studentTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+.rowT{
+  width: 100%;
+}
+.name{
+    width: 75%;
+    padding-left: 5% !important;
+    
+}
+.btn{
+    width: 20%;
+}
+.fi{
+    padding: 1.5%;
+    border-bottom: 0.1px solid grey;
+}

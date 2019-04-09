@@ -54,6 +54,8 @@
     <div id="container2">
         <img src="/resources/multiply.png" id="closeWindow2"/>
         <h3 class="title">Return by student</h3>
+        <!-- <div id="insideCont">
+        </div> -->
     </div>
 </div>
         <!-- =START OF NAV= -->
