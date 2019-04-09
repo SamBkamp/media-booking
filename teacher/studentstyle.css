@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+#mainhello{
+    position: relative;
+    display: block;
+    margin: 40vh auto;
+    width: 10vw;
+    height: 10vh;
+    transition: 1s;
+    font-family: Lato;
+    color: green;
+}
+#subheading{
+    display: block;
+    margin: -40vh auto;
+    width: 50vh;
+    height: 4vh;
+    position: relative;
+    font-family: Lato;
+
+}

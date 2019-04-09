@@ -58,9 +58,11 @@
     
 
     <div id="container">
-    <h3 id="title">Have a teacher scan this code to return your equipment</h3>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost/dashboard/return.php?r=<?php echo(htmlspecialchars($_COOKIE["ident"])) ?>" id="qrcode"/>
-    <input disabled="disabled" value="http://localhost/dashboard/return.php?r=<?php echo($_COOKIE["ident"]) ?>" id="copyPaste">
+        <img src="/resources/multiply.png" id="closeWindow"/>
+        <h3 id="title">Have a teacher scan this code to return your equipment</h3>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:8080/teacher/student.php?r=<?php echo(htmlspecialchars($_COOKIE["ident"])) ?>&c=<?php echo(sha1($_COOKIE["ident"] . date("dmy")))?>" id="qrcode"/>
+        <input id="joinClass" value="http://localhost:8080/teacher/student.php?r=<?php echo(htmlspecialchars($_COOKIE["ident"])) ?>&c=<?php echo(sha1($_COOKIE["ident"] . date("dmy")))?>">
+        <button id="copy" type="button">Copy in clipboard<span class="copiedtext" aria-hidden="true">Copied</span></button>
     </div>
 </div>
         <!-- =START OF NAV= -->
