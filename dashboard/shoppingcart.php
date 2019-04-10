@@ -1,7 +1,7 @@
 <?php
 
 $start = array();
-$conn = new mysqli("localhost", "root", "", "userbase");
+$conn = new mysqli("localhost", "phpmyadmin", "diffie", "userbase");
 
 
 if(isset($_GET["q"])){

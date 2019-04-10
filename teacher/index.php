@@ -9,7 +9,7 @@
 <html>
     <head>
         <?php
-        $mysqli = new mysqli("localhost", "root", "","userbase");
+        $mysqli = new mysqli("localhost", "phpmyadmin", "diffie","userbase");
                 if (isset($_COOKIE["ident"])) {
                     if(isset($_COOKIE["secure"])){
                         $usernameQuery = "SELECT id FROM userData WHERE username ='" . $mysqli->real_escape_string($_COOKIE["ident"]) . "'";
@@ -46,7 +46,7 @@
     <div id="container">
         <img src="/resources/multiply.png" id="closeWindow"/>
         <h3 class="title"></h3>
-        <input id="joinClass" value="<?php echo("localhost:8080/signup.php?user=" . htmlspecialchars($_COOKIE["ident"]) . "&oauth=" . sha1($_COOKIE["ident"] . date("dmy")))?>" readonly/>
+        <input id="joinClass" value="<?php echo("sisdigitaleaders.com/mediasignup/signup.php?user=" . htmlspecialchars($_COOKIE["ident"]) . "&oauth=" . sha1($_COOKIE["ident"] . date("dmy")))?>" readonly/>
         <button id="copy" type="button">Copy in clipboard<span class="copiedtext" aria-hidden="true">Copied</span></button>
         <h3 id="warningClass">Warning:</h3>
         <h4 id="warningText">this link will expire by the end of the day</h4>

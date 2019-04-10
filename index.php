@@ -5,7 +5,7 @@
 error_reporting(0);
 ini_set('display_errors', 0);
 $teacher = False;
-$mysqli = new mysqli("localhost", "root", "", "userbase");
+$mysqli = new mysqli("localhost", "phpmyadmin", "diffie", "userbase");
 $fiesta = "";
 $message = "";
 $amp = "";

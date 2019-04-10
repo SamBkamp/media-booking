@@ -8,7 +8,7 @@
 <html>
     <head>
         <?php
-        $mysqli = new mysqli("localhost", "root", "","userbase");
+        $mysqli = new mysqli("localhost", "phpmyadmin", "diffie","userbase");
                 if (isset($_COOKIE["ident"])) {
                     if(isset($_COOKIE["secure"])){
                         $usernameQuery = "SELECT id FROM userData WHERE username ='" . $_COOKIE["ident"] . "'";
