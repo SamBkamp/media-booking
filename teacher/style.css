@@ -385,6 +385,9 @@ button{
     margin: 4% auto;
     border-radius: 2%;
     background-color: #e6e6e6;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 0px;
 }
 #studentTable {
     width: 100%;
@@ -400,6 +403,7 @@ button{
 } 
 .btn{
     width: 30%;
+    padding-top: 2.5% !important;
 }
 .fi{
     padding: 1.5%;

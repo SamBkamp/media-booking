@@ -119,10 +119,7 @@ padding-left: 20px;
     width: 50%;
     margin: 40px auto;
     display: block;
-}
-#addFile:hover {
     cursor: pointer;
-    content: url("/media/addfileshover.png");
 }
 #spacer{
     width: 90%;

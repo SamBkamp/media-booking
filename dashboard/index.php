@@ -150,6 +150,11 @@
                             $color = 'green';
                             
                             $in = "Available";
+                            if($amountCheck->num_rows > 3){
+                                $yelp = "hidden";
+                            }else {
+                                $yelp = "";
+                            }
                         }
                         echo ("<tr class='hover'>
                         <td class='files fileName'/> " . $row["name"] . "</td>
@@ -179,6 +184,11 @@
                             $color = 'green';
                             
                             $in = "Available";
+                            if($amountCheck->num_rows > 3){
+                                $yelp = "hidden";
+                            }else {
+                                $yelp = "";
+                            }
                         }
                         echo ("<tr class='hover'>
                         <td class='files fileName'/> " . $row["name"] . "</td>
