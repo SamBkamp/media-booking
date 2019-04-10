@@ -40,7 +40,7 @@ $(".button-two").click(function(){
 })    
 
 function explode(){
-    window.location.replace("/dashboard");
+    window.location.replace("mediasignup/dashboard");
 }
 
 $("#addFile").click(function(){
@@ -48,7 +48,7 @@ $("#addFile").click(function(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        window.location.replace("/");
+        window.location.replace("/mediasignup");
       }
     };
     xhttp.open("GET", "../teacher/return.php?logout=true", true);

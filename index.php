@@ -28,14 +28,14 @@ if (isset($_COOKIE["ident"])) {
 		$check = md5($glassRow . $_COOKIE["ident"]); #hashes it to re create how the original cookie was written (secure cookie hash was created with id + user)
 		
 		if ($check == $_COOKIE["secure"]){
-			header("Location: /dashboard/index.php"); #here if it matches the cookie
+			header("Location: mediasignup/dashboard/index.php"); #here if it matches the cookie
 		}
 	}else {
 		$ident = $_COOKIE["ident"];
 		$glasses = "SELECT id FROM userData WHERE username = '" . $mysqli->real_escape_string($ident) . "'"; #takes the id based on the ident cookie
 		$glassesQuery = $mysqli->query($glasses) or die($mysqli->error);
 		if ($glassesQuery->num_rows > 0){
-			header("Location: /dashboard/index.php"); #goes to this condition if cookie is set and is not teacher account (can be faked but, might aswell just use the form lmao)
+			header("Location: mediasignup/dashboard/index.php"); #goes to this condition if cookie is set and is not teacher account (can be faked but, might aswell just use the form lmao)
 		}else{
 			
 		}
@@ -63,7 +63,7 @@ if(isset($_POST["username"])){
 				$check = md5($idRow . $_POST["username"]);
 				setcookie("ident", $_POST["username"], time() + (86400 * 30), "/"); #if its correct, generates secure hash with id and username (schould be secure enough)
 				setcookie("secure", $check, time() + (86400 * 30), "/");
-				header("Location: /teacher/index.php");
+				header("Location: mediasignup/teacher/index.php");
 			}else {
 				$GLOBALS["message"] = "Username and Password do not match."; #take a wild guess
 			}
@@ -79,7 +79,7 @@ if(isset($_POST["username"])){
 		
 
 			if ($username == $checkRow){ #checks if the inputted username actually exists, and if so, headers them to dash
-				header("Location: /dashboard/index.php");
+				header("Location: mediasignup/dashboard/index.php");
 				setcookie("ident", $mysqli->real_escape_string($_POST["username"]), time() + (86400 * 30), "/"); #sets cookie based solely on username (dont need cookie security when its just a username)
 			}else {
 				$GLOBALS["message"] = "User doesn't exist";

@@ -64,7 +64,7 @@ $("#addFile").click(function(){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      window.location.replace("/");
+      window.location.replace("/mediasignup");
     }
   };
   xhttp.open("GET", "return.php?logout=true", true);

@@ -18,7 +18,7 @@ if(isset($_GET["user"]) and isset($_GET["oauth"])){
     if(sha1($_GET["user"] . date("dmy")) == $_GET["oauth"]){
         $signinok = 1;
     }else{
-        header("Location:/invalid");
+        header("Location:/mediasignup/invalid");
     }
 }else {
 }
