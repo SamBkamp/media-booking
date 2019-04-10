@@ -40,7 +40,7 @@ $(".button-two").click(function(){
 })    
 
 function explode(){
-    window.location.replace("mediasignup/dashboard");
+    window.location.replace("/mediasignup/dashboard");
 }
 
 $("#addFile").click(function(){
