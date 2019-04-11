@@ -26,6 +26,8 @@ body {
     font-size: 14px;
     position: relative;
     top: 25px;
+    z-index: 1222222222;
+    width: 45%;
 }
 
 .wrapper {

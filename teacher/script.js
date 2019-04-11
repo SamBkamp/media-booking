@@ -21,8 +21,6 @@ $("#closeWindow").click(function(){
 });
 
 $("#closeWindow2").click(function(){
-  $("#grey").css("visibility", "hidden");
-  $("#container2").css("visibility", "hidden");
   location.reload();
 });
 
