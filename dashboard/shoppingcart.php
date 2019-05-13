@@ -52,12 +52,12 @@ if(isset($_GET["p"])){
                 $availCheck = "SELECT avail FROM bookingitems WHERE id = '" . $i . "'";
                 if($amountCheck->num_rows <= 4 and $num <= 4-$amountCheck->num_rows){
                     $input = $_GET["datein"];
-                        $a = explode('.',$input);
-                        $result = $a[2].'-'.$a[1].'-'.$a[0];
+                    $a = explode('.',$input);
+                    $result = $a[2].'-'.$a[1].'-'.$a[0];
 
-                        $input2 = $_GET["dateout"];
-                        $b = explode('.',$input2);
-                        $result2 = $b[2].'-'.$b[1].'-'.$b[0];
+                    $input2 = $_GET["dateout"];
+                    $b = explode('.',$input2);
+                    $result2 = $b[2].'-'.$b[1].'-'.$b[0];
 
                 
                 }else {
