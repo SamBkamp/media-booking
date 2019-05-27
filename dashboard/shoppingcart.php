@@ -13,13 +13,12 @@ if(isset($_GET["q"])){
     }else{
         array_push($start, $q);
         setcookie("shopping", serialize($start), time() + (86400 * 30), "/");
-        echo($start);
     }
 }
 
 
 if(isset($_GET["r"])){  
-$r = $_GET["r"];
+$r = $conn->real_escape_string($_GET["r"]);
     if(isset($_COOKIE["shopping"])){
         $yes = unserialize($_COOKIE["shopping"]);
         $key = array_search($r, $yes);
@@ -31,13 +30,12 @@ $r = $_GET["r"];
 
 
 if(isset($_GET["p"])){
-    $p = $_GET["p"];
+    $p = $conn->real_escape_string($_GET["p"]);
     if (isset($_COOKIE{"shopping"})){
         if (empty(unserialize($_COOKIE["shopping"]))){
             echo("basket is empty");
 
-        }else{
-            }
+        }
             $num = 0;
             foreach (unserialize($_COOKIE["shopping"]) as $i){
                 $num = $num +1;
@@ -45,12 +43,26 @@ if(isset($_GET["p"])){
             } if($num > 4){
                 echo("you have too many thing booked");
                 exit();
-            } else {
-
             }
-                $amountCheck = $conn->query("SELECT name FROM bookingitems WHERE last='" . $_COOKIE["ident"] . "'");
+                $amountCheck = $conn->query("SELECT name FROM bookingitems WHERE last='" . $conn->real_escape_string($_COOKIE["ident"]) . "'");
                 $availCheck = "SELECT avail FROM bookingitems WHERE id = '" . $i . "'";
-                if($amountCheck->num_rows <= 4 and $num <= 4-$amountCheck->num_rows){    
+                if($amountCheck->num_rows <= 4 and $num <= 4-$amountCheck->num_rows){
+                    $input = $_GET["datein"];
+                    $a = explode('.',$input);
+                    if ($a[0] > 31 or $a[1] > 12 or $a[2] < 19){
+                        echo($a[0] . ", " . $a[1] . ", " . $a[2]);
+                        exit();
+                    }
+                    $result = $a[2].'-'.$a[1].'-'.$a[0];
+
+                    $input2 = $_GET["dateout"];
+                    $b = explode('.',$input2);
+                    if ($b[0] > 31 or $b[1] >  12 or $b[2] < 19){
+                        echo($b[0] . ", " . $b[1]);
+                        exit();
+                    }
+                    $result2 = $b[2].'-'.$b[1].'-'.$b[0];
+
                 
                 }else {
                     echo("you have too many thing booked");
@@ -62,15 +74,8 @@ if(isset($_GET["p"])){
                     $check = implode($selectionQuery->fetch_assoc());
                     
                     if ($check == "Available"){
-                        $input = $_GET["datein"];
-                        $a = explode('.',$input);
-                        $result = $a[2].'-'.$a[1].'-'.$a[0];
 
-                        $input2 = $_GET["dateout"];
-                        $b = explode('.',$input2);
-                        $result2 = $b[2].'-'.$b[1].'-'.$b[0];
-
-                        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
+                        $sql2 = "UPDATE bookingitems SET last='" . $conn->real_escape_string($_COOKIE["ident"]) . "' WHERE id='" . $i . "'"; 
                         $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'";
                         $sql = "UPDATE bookingitems SET date='" . strtotime($result) . "' WHERE id='" . $i . "'";
                         $sql4 = "UPDATE bookingitems SET dateout='" . strtotime($result2) . "' WHERE id='" . $i . "'";

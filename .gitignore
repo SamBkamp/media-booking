@@ -1,4 +1,7 @@
-.vscode/launch.json
 .vscode
+<<<<<<< HEAD
 CsgoVoting
 CsgoVoting/
+=======
+.vscode/
+>>>>>>> 1586fe15a7a1730552f65ee15a5900455bd21591

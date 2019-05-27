@@ -11,7 +11,7 @@
         $mysqli = new mysqli("localhost", "root", "","userbase");
                 if (isset($_COOKIE["ident"])) {
                     if(isset($_COOKIE["secure"])){
-                        $usernameQuery = "SELECT id FROM userData WHERE username ='" . $_COOKIE["ident"] . "'";
+                        $usernameQuery = "SELECT id FROM userData WHERE username ='" . $mysqli->real_escape_string($_COOKIE["ident"]) . "'";
                         $usernameResult = $mysqli->query($usernameQuery) or die($mysqli->error);
                         $usernameRow = implode($usernameResult->fetch_assoc());
                         $hash = md5($usernameRow . $_COOKIE["ident"]);
@@ -96,13 +96,6 @@
       <input placeholder="Date out (dd.mm.yy)" id="dateout"/>
       <p id="to">To...</p>
       <input placeholder="Date in (dd.mm.yy)" id="datein"/>
-    <!-- <select id="selector">
-        <option value="default">Days out</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>  -->
       <button class='button-two'><span>Book</span></button>
 
       

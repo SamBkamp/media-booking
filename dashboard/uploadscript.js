@@ -2,11 +2,13 @@
 
 $(".button-two").click(function(){
     var xhttp = new XMLHttpRequest();
-
+    if($("#dateout").val() == "" || $("#datein").val() == ""){
+      return false;
+    }else{}
             xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 if (xhttp.responseText == "Empty Basket"){
-
+                  return false;
                 }else if (xhttp.responseText == ""){
                     console.log("amp");
                     setTimeout(explode, 1500);
