@@ -5,7 +5,7 @@ $conn = new mysqli("localhost", "root", "", "userbase");
 
 
 if(isset($_GET["q"])){
-    $q = $conn->real_escape_string($_GET["q"]);
+    $q = $_GET["q"];
     if(isset($_COOKIE["shopping"])){
         $yes = unserialize($_COOKIE["shopping"]);
         array_push($yes, $q);
@@ -13,7 +13,6 @@ if(isset($_GET["q"])){
     }else{
         array_push($start, $q);
         setcookie("shopping", serialize($start), time() + (86400 * 30), "/");
-        echo($start);
     }
 }
 
@@ -36,8 +35,7 @@ if(isset($_GET["p"])){
         if (empty(unserialize($_COOKIE["shopping"]))){
             echo("basket is empty");
 
-        }else{
-            }
+        }
             $num = 0;
             foreach (unserialize($_COOKIE["shopping"]) as $i){
                 $num = $num +1;
@@ -45,18 +43,24 @@ if(isset($_GET["p"])){
             } if($num > 4){
                 echo("you have too many thing booked");
                 exit();
-            } else {
-
             }
                 $amountCheck = $conn->query("SELECT name FROM bookingitems WHERE last='" . $conn->real_escape_string($_COOKIE["ident"]) . "'");
                 $availCheck = "SELECT avail FROM bookingitems WHERE id = '" . $i . "'";
                 if($amountCheck->num_rows <= 4 and $num <= 4-$amountCheck->num_rows){
                     $input = $_GET["datein"];
                     $a = explode('.',$input);
+                    if ($a[0] > 31 or $a[1] > 12 or $a[2] < 19){
+                        echo($a[0] . ", " . $a[1] . ", " . $a[2]);
+                        exit();
+                    }
                     $result = $a[2].'-'.$a[1].'-'.$a[0];
 
                     $input2 = $_GET["dateout"];
                     $b = explode('.',$input2);
+                    if ($b[0] > 31 or $b[1] >  12 or $b[2] < 19){
+                        echo($b[0] . ", " . $b[1]);
+                        exit();
+                    }
                     $result2 = $b[2].'-'.$b[1].'-'.$b[0];
 
                 
@@ -70,20 +74,8 @@ if(isset($_GET["p"])){
                     $check = implode($selectionQuery->fetch_assoc());
                     
                     if ($check == "Available"){
-<<<<<<< HEAD
-                        $input = $_GET["datein"];
-                        $a = explode('.',$input);
-                        $result = $a[2].'-'.$a[1].'-'.$a[0];
-
-                        $input2 = $_GET["dateout"];
-                        $b = explode('.',$input2);
-                        $result2 = $b[2].'-'.$b[1].'-'.$b[0];
 
                         $sql2 = "UPDATE bookingitems SET last='" . $conn->real_escape_string($_COOKIE["ident"]) . "' WHERE id='" . $i . "'"; 
-=======
-                        
-                        $sql2 = "UPDATE bookingitems SET last='" . $_COOKIE["ident"] . "' WHERE id='" . $i . "'"; 
->>>>>>> 871c2549d54e5365c768f220daa572081480da3a
                         $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'";
                         $sql = "UPDATE bookingitems SET date='" . strtotime($result) . "' WHERE id='" . $i . "'";
                         $sql4 = "UPDATE bookingitems SET dateout='" . strtotime($result2) . "' WHERE id='" . $i . "'";
