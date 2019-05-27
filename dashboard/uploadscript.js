@@ -20,6 +20,8 @@ $(".button-two").click(function(){
                         setTimeout(explode, 3000);
                 }else if(xhttp.responseText == "you have too many thing booked"){
                   alert("you have booked too many items, the maximum allowed is 4");
+                }else if (xhttp.responseText == "date"){
+                  alert("please double check your dates");
                 }else {
                     $("#warning").html(xhttp.responseText);
                     //$("#warning").html("one or more of your items could not be booked due to an internal error");

@@ -23,7 +23,7 @@ function booking(elm, id){
 
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            alert(this.responseText);
+            //alert(this.responseText);
           }
         };
         xhttp.open("GET", "shoppingcart.php?q=" + id, true);

@@ -50,18 +50,19 @@ if(isset($_GET["p"])){
                     $input = $_GET["datein"];
                     $a = explode('.',$input);
                     if ($a[0] > 31 or $a[1] > 12 or $a[2] < 19){
-                        echo($a[0] . ", " . $a[1] . ", " . $a[2]);
+                        echo("date");
                         exit();
                     }
                     $result = $a[2].'-'.$a[1].'-'.$a[0];
 
                     $input2 = $_GET["dateout"];
                     $b = explode('.',$input2);
-                    if ($b[0] > 31 or $b[1] >  12 or $b[2] < 19){
-                        echo($b[0] . ", " . $b[1]);
+                    $result2 = $b[2].'-'.$b[1].'-'.$b[0];
+                    if ($b[0] > 31 or $b[1] >  12 or $b[2] < 19 or strtotime($result2) > strtotime($result)){
+                        echo("date");
                         exit();
                     }
-                    $result2 = $b[2].'-'.$b[1].'-'.$b[0];
+                    
 
                 
                 }else {
@@ -74,11 +75,12 @@ if(isset($_GET["p"])){
                     $check = implode($selectionQuery->fetch_assoc());
                     
                     if ($check == "Available"){
+                        $userCheck = "SELECT ";
 
-                        $sql2 = "UPDATE bookingitems SET last='" . $conn->real_escape_string($_COOKIE["ident"]) . "' WHERE id='" . $i . "'"; 
+                        $sql2 = "UPDATE bookingitems SET last='" . serialize($conn->real_escape_string($_COOKIE["ident"])) . "' WHERE id='" . $i . "'"; 
                         $sql3 = "UPDATE bookingitems SET avail='Booked' WHERE id='" . $i . "'";
-                        $sql = "UPDATE bookingitems SET date='" . strtotime($result) . "' WHERE id='" . $i . "'";
-                        $sql4 = "UPDATE bookingitems SET dateout='" . strtotime($result2) . "' WHERE id='" . $i . "'";
+                        $sql = "UPDATE bookingitems SET date='" . serialize(strtotime($result)) . "' WHERE id='" . $i . "'";
+                        $sql4 = "UPDATE bookingitems SET dateout='" . serialize(strtotime($result2)) . "' WHERE id='" . $i . "'";
 
                         
                         if ($conn->query($sql) === TRUE) {
