@@ -60,9 +60,10 @@
                     $selection = "SELECT DISTINCT last FROM bookingitems WHERE LENGTH(last) > 1";
                     $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
                     while($mow = $selectionQuery->fetch_assoc()) {
+                        $data = explode(",", $mow["last"]);
                         echo("
-                        <tr class=\"rowT\" id=\"". $mow["last"] ."\">
-                        <td class=\"nameS fi\">". $mow["last"] ."</td>
+                        <tr class=\"rowT\" id=\"". $data[0] ."\">
+                        <td class=\"nameS fi\">". $data[0] ."</td>
                         <td class=\"fi btn\"><div class='fileType' onClick='returning(\"" . htmlspecialchars(md5($_COOKIE["secure"])) . "\", \"" . $mow["last"] . "\", \"" . htmlspecialchars($_COOKIE["ident"]) . "\")'><button class='button-two'><span>Return</span></button></div></td>"
                     );
                     }
@@ -102,6 +103,7 @@
                 $selection = "SELECT id, name, avail, date, last FROM bookingitems WHERE avail = 'Booked'";
             $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
             while($row = $selectionQuery->fetch_assoc()) {
+                $dataName = explode(",", $row["last"]);
                 if ($row["avail"] == "Booked"){
                     $color = 'red';
                     $chose = 'Return';
@@ -115,7 +117,7 @@
                 }
                 echo ("<tr class='hover'>
                 <td class='files fileName'> " . $row["name"] . "</td>
-                <td class='files lastUser'> " . $row["last"] . "</td>
+                <td class='files lastUser'> " . $dataName[0] . "</td>
                 <td class='owner files name " . $color . "' >" . $in  ."</td>
                 <td class='doctype'><div class='fileType' onClick='booking(\"" . htmlspecialchars(md5($_COOKIE["secure"])) . "\", \"" . $row["id"] . "\", \"" . htmlspecialchars($_COOKIE["ident"]) . "\")'><button class='button-two' id='" . $row["id"] . "'><span>" . $chose ."</span></button></div></td>
                 </tr>");

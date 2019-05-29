@@ -154,7 +154,7 @@
                     while($row = $selectionQuery->fetch_assoc()) {
                         if ($row["avail"] == "Booked"){
                             $color = 'red';
-                            $check = "lmao";
+                            $checkSL = "lmao";
                             if($row["dateout"] < time() and time() < $row["date"]){
                                 $yelp = "hidden";
                                 $in = "Available on " . Date('d-m-y', unserialize($row["date"]));
@@ -164,8 +164,8 @@
                                 }else {
                                     $yelp = "";
                                 }
-                                $in = "Booked out " . Date('d-m-y', unserialize($row["dateout"]));
-                                $check = $row["dateout"];
+                                $in = "Booked out " . Date('d-m-y', json_decode($row["dateout"]));
+                                $checkSL = unserialize($row["dateout"]);
                             }
                             //$row["name"]
                             
@@ -181,7 +181,7 @@
                             }
                         }
                         echo ("<tr class='hover'>
-                        <td class='files fileName'/> " . $check . "</td>
+                        <td class='files fileName'/> " . $row["name"] . "</td>
                         <td class='owner files name " . $color . "' >" . $in  ."</td>
                         <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
                         </tr>");
