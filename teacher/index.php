@@ -104,10 +104,11 @@
             $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
             while($row = $selectionQuery->fetch_assoc()) {
                 $dataName = explode(",", $row["last"]);
+                $dateRaw = explode(",", $row["date"]);
                 if ($row["avail"] == "Booked"){
                     $color = 'red';
                     $chose = 'Return';
-                    $in = "Due Back " . Date('d-m-y', $row["date"]);
+                    $in = "Due Back " . Date('d-m-y', $dateRaw[0]);
                     
                 }else{
                     $color = 'green';

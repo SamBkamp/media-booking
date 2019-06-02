@@ -76,9 +76,6 @@
       </div>
     <!-- =END OF NAV= -->
       <div id="topNav">
-      <?php
-        
-      ?>
       <div id="reported">
                 <h3 id="op">Opinions/Bugs? let us know!</h3>
                 <textarea id="areaText" placeholder="type here..."></textarea>
@@ -94,144 +91,57 @@
             <input id="searchBar" placeholder="search...">
         </div>
         </div>
-        <div id="cleared">
-            <table id="table">  
-                <tr>
-                    <th class="dividers">Mics</th>
-                    <th class="owner files name"></th>
-                    <th class="doctype"></th>
-                </tr>
+        
+        <table id="table">  
+            <div id="cleared">
+
                 <?php 
-                    
-                        $selection = "SELECT id, name, avail, date, dateout FROM bookingitems WHERE type='mic' ORDER BY id";
-                        $amountCheck = $mysqli->query("SELECT name FROM bookingitems WHERE last='" . $mysqli->real_escape_string($_COOKIE["ident"]) . "'");
-                    $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
-                    while($row = $selectionQuery->fetch_assoc()) {
-                        if ($row["avail"] == "Booked"){
-                            $color = 'red';
-                            
-                            if($row["dateout"] < time() and time() < $row["date"]){
-                                $yelp = "hidden";
-                                $in = "Available on " . Date('d-m-y', $row["date"]);
-                            }else{
-                                if($amountCheck->num_rows > 3){
+                    $typeQuery = $mysqli->query("SELECT DISTINCT type FROM bookingitems") or die($mysqli->error);
+                    while($types = $typeQuery->fetch_assoc()){
+                        echo("<tr>
+                        <th class='dividers'>" . $types["type"] . "</th>
+                        <th class='owner files name'></th>
+                        <th class='doctype'></th>
+                        </tr>
+                        ");
+                        $selection = "SELECT id, name, avail, date, dateout FROM bookingitems WHERE type='". $types["type"] ."' ORDER BY id";
+                        $amountCheck = $mysqli->query("SELECT last FROM bookingitems WHERE avail='Booked'");
+                        $selectionQuery = $mysqli->query($selection) or die($mysqli->error);
+                        $amount = 0; 
+                        while($row = $selectionQuery->fetch_assoc()) {
+                            $dateRaw = explode(",", $row["date"]);
+                            while ($amountels = $amountCheck->fetch_assoc()){
+                                $dataName = explode(",", $amountels["last"]);
+                                foreach ($dataName as $i){
+                                    if ($i == $_COOKIE["ident"]){
+                                        $amount = $amount + 1;
+                                    }
+                                }
+                                if($amount > 3){
                                     $yelp = "hidden";
                                 }else {
                                     $yelp = "";
+                                    echo($amount);
                                 }
-                                $in = "Booked out " . Date('d-m-y', $row["dateout"]);
                             }
+                        
                             
                             
-                        }else{
-                            $color = 'green';
-                            
-                            $in = "Available";
-                            if($amountCheck->num_rows > 3){
-                                $yelp = "hidden";
-                            }else {
-                                $yelp = "";
-                            }
-                        }
-                        echo ("<tr class='hover'>
-                        <td class='files fileName'/> " . $row["name"] . "</td>
-                        <td class='owner files name " . $color . "' >" . $in  ."</td>
-                        <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
-                        </tr>");
-                    }    
-
-
-                ?>
-                <tr>
-                    <th class="dividers">Cameras</th>
-                    <th class="owner files name"></th>
-                    <th class="doctype"></th>
-                </tr>
-                <?php 
-                    
-                        $selection = "SELECT id, name, avail, date FROM bookingitems WHERE type='cam' ORDER BY id";
-                    $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
-                    while($row = $selectionQuery->fetch_assoc()) {
-                        if ($row["avail"] == "Booked"){
-                            $color = 'red';
-                            $checkSL = "lmao";
-                            if($row["dateout"] < time() and time() < $row["date"]){
-                                $yelp = "hidden";
-                                $in = "Available on " . Date('d-m-y', unserialize($row["date"]));
+                            if ($row["avail"] == "Booked"){
+                                $color = 'red';
+                                $in = "Available on " . Date('d-m-y', $dateRaw[0]);
                             }else{
-                                if($amountCheck->num_rows > 3){
-                                    $yelp = "hidden";
-                                }else {
-                                    $yelp = "";
-                                }
-                                $in = "Booked out " . Date('d-m-y', json_decode($row["dateout"]));
-                                $checkSL = unserialize($row["dateout"]);
+                                $color = 'green';
+                                $in = "Available";
+                                
                             }
-                            //$row["name"]
-                            
-                            
-                        }else{
-                            $color = 'green';
-                            
-                            $in = "Available";
-                            if($amountCheck->num_rows > 3){
-                                $yelp = "hidden";
-                            }else {
-                                $yelp = "";
-                            }
-                        }
-                        echo ("<tr class='hover'>
-                        <td class='files fileName'/> " . $row["name"] . "</td>
-                        <td class='owner files name " . $color . "' >" . $in  ."</td>
-                        <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
-                        </tr>");
-                    }    
-
-
-                ?>
-                <tr>
-                    <th class="dividers">Accessories</th>
-                    <th class="owner files name"></th>
-                    <th class="doctype"></th>
-                </tr>
-                <?php 
-                    
-                        $selection = "SELECT id, name, avail, date FROM bookingitems WHERE type='acc' ORDER BY id";
-                    $selectionQuery = $mysqli->query($selection) or die($mysqli->error); 
-                    while($row = $selectionQuery->fetch_assoc()) {
-                        if ($row["avail"] == "Booked"){
-                            $color = 'red';
-                            
-                            if($row["dateout"] < time() and time() < $row["date"]){
-                                $yelp = "hidden";
-                                $in = "Available on " . Date('d-m-y', $row["date"]);
-                            }else{
-                                if($amountCheck->num_rows > 3){
-                                    $yelp = "hidden";
-                                }else {
-                                    $yelp = "";
-                                }
-                                $in = "Booked out " . Date('d-m-y', $row["dateout"]);
-                            }
-                            
-                            
-                        }else{
-                            $color = 'green';
-                            
-                            $in = "Available";
-                            if($amountCheck->num_rows > 3){
-                                $yelp = "hidden";
-                            }else {
-                                $yelp = "";
-                            }
-                        }
-                        echo ("<tr class='hover'>
-                        <td class='files fileName'/> " . $row["name"] . "</td>
-                        <td class='owner files name " . $color . "' >" . $in  ."</td>
-                        <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
-                        </tr>");
-                    }    
-
+                            echo ("<tr class='hover'>
+                            <td class='files fileName'/> " . $row["name"] . "</td>
+                            <td class='owner files name " . $color . "' >" . $in  ."</td>
+                            <td class='doctype'><div class=' " . $yelp . " fileType' onClick='booking(\"" . $row["name"] . "\", \"" . $row["id"] . "\")'><button class='button-two' id='" . $row["id"] . "'><span>Book</span></button></div></td>
+                            </tr>");
+                        }    
+                    }
 
                 ?>
             </div>

@@ -9,7 +9,7 @@ $(".button-two").click(function(){
             if (this.readyState == 4 && this.status == 200) {
                 if (xhttp.responseText == "Empty Basket"){
                   return false;
-                }else if (xhttp.responseText == ""){
+                }else if (xhttp.responseText == "succ"){
                     console.log("amp");
                     setTimeout(explode, 1500);
                     $("#grey").css("visibility", "visible");
@@ -22,6 +22,8 @@ $(".button-two").click(function(){
                   alert("you have booked too many items, the maximum allowed is 4");
                 }else if (xhttp.responseText == "date"){
                   alert("please double check your dates");
+                }else if (xhttp.responseText == "fail"){
+                  alert("there was an error with the database");
                 }else {
                     $("#warning").html(xhttp.responseText);
                     //$("#warning").html("one or more of your items could not be booked due to an internal error");
