@@ -9,7 +9,7 @@ $(".button-two").click(function(){
             if (this.readyState == 4 && this.status == 200) {
                 if (xhttp.responseText == "Empty Basket"){
                   return false;
-                }else if (xhttp.responseText == "succ"){
+                }else if (xhttp.responseText == ""){
                     console.log("amp");
                     setTimeout(explode, 1500);
                     $("#grey").css("visibility", "visible");
@@ -22,7 +22,7 @@ $(".button-two").click(function(){
                   alert("you have booked too many items, the maximum allowed is 4");
                 }else if (xhttp.responseText == "date"){
                   alert("please double check your dates");
-                }else if (xhttp.responseText == "fail"){
+                }else if (xhttp.responseText == "jfsdhfldksja"){
                   alert("there was an error with the database");
                 }else {
                     $("#warning").html(xhttp.responseText);
@@ -33,7 +33,7 @@ $(".button-two").click(function(){
                 }
                 
             }
-
+//"fail" || "failfail" || "failfailfail" || "failfailfailfail"
             
             };
             xhttp.open("GET", "shoppingcart.php?p=send&dateout=" + $("#dateout").val()+"&datein=" + $("#datein").val(), true);
