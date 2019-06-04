@@ -54,7 +54,6 @@ if(isset($_GET["p"])){
         $availCheck = "SELECT avail FROM bookingitems WHERE id = '" . $i . "'";
 
         //Amount booked in session check, exploded into good date format
-        if ()
         if($amountCheck->num_rows <= 4 and $num <= 4-$amountCheck->num_rows){
             $input = $_GET["datein"];
             $a = explode('.',$input);
